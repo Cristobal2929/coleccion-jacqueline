@@ -1,36 +1,30 @@
 ---
-title: "Colección Jacqueline – Boutique de eventos"
+title: Colección Jacqueline – Boutique de eventos
 sdk: static
 ---
 
 # Colección Jacqueline
 
-Esta es una página web estática de una sola página (single‑page) para la boutique **Colección Jacqueline**, especializada en ropa y complementos para eventos en La Línea de la Concepción.
+Esta es una página web estática de una sola página para la boutique femenina **Colección Jacqueline**, especializada en ropa de evento (vestidos de boda, chaquetones, tocados, estolas y complementos) y servicios de arreglos.
 
 ## Estructura de archivos
 
 - `index.html` – Página única con todo el contenido, estilos y scripts embebidos.
-- `static/img/` – Carpeta con las siete imágenes reales proporcionadas:
-  - `imagen_1.png`
-  - `imagen_2.jpg`
-  - `imagen_3.jpg`
-  - `imagen_4.png`
-  - `imagen_5.jpg`
-  - `imagen_6.png`
-  - `imagen_7.jpg`
+- `static/img/` – Carpeta con las siete imágenes proporcionadas (imagen_1.jpg … imagen_7.jpg).
 
-## Características principales
+## Tecnologías usadas
 
-- **Diseño responsive**: se adapta a móviles, tablets y escritorio.
-- **Tipografía**: *Playfair Display* para títulos y *Montserrat* para el cuerpo del texto.
-- **Accesibilidad**: foco visible, navegación por teclado y soporte para `prefers-reduced-motion`.
-- **Sin frameworks**: todo el CSS y JavaScript están incluidos directamente en el HTML.
-- **Contacto**: muestra el email real (`635440061`) y un marcador para el número de WhatsApp que deberá completarse manualmente.
+- HTML5, CSS3 (sin frameworks), JavaScript puro.
+- Google Fonts: **Playfair Display** (display) y **Lato** (texto).
+- Diseño responsive, accesibilidad (focus visible, `prefers-reduced-motion`).
 
-## Cómo usar
+## Notas de contenido
 
-1. Coloca los archivos en el directorio raíz de tu servidor web.
-2. Asegúrate de que la carpeta `static/img/` contenga las imágenes con los nombres indicados.
-3. Abre `index.html` en cualquier navegador.
+- Todos los precios y textos están en español de España.
+- El email se muestra tal cual fue proporcionado: `635440061`.
+- El enlace de WhatsApp se deja como marcador `[TU WHATSAPP]` para rellenar manualmente.
+- No se incluyen datos de teléfono ni direcciones ficticias.
 
-¡Listo! La web está preparada para presentar la boutique de forma elegante y profesional.
+## Cómo desplegar
+
+Copiar la carpeta completa en cualquier servidor estático (GitHub Pages, Netlify, Vercel, etc.) y abrir `index.html` en el navegador. No se requiere compilación ni dependencias.
