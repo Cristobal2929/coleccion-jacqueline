@@ -8,162 +8,171 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --color-primary: #6a0dad; /* púrpura elegante */
-      --color-bg: #fafafa;
-      --color-text: #222;
-      --color-muted: #555;
+      --color-primary: #1e3a8a;   /* indigo‑900 */
+      --color-accent:  #fbbf24;   /* amber‑400 */
       --font-display: 'Playfair Display', serif;
       --font-body: 'Lato', sans-serif;
     }
     *, *::before, *::after { box-sizing: border-box; }
     body {
-      margin:0; font-family: var(--font-body); color: var(--color-text);
-      background: var(--color-bg);
-      line-height: 1.6;
+      margin:0; font-family: var(--font-body); line-height:1.6; color:#333;
+      background:#fafafa;
     }
-    a { color: var(--color-primary); text-decoration: none; }
-    a:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+    a { color: var(--color-primary); text-decoration:none; }
+    a:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
     header {
-      position: relative;
-      min-height: 80vh;
-      background: url('static/img/imagen_1.jpg') center/cover no-repeat;
+      position:sticky; top:0; background:#fff; z-index:10; box-shadow:0 2px 4px rgba(0,0,0,.1);
+    }
+    .nav {
+      display:flex; justify-content:space-between; align-items:center; padding:1rem 2rem;
+    }
+    .nav .logo { font-family:var(--font-display); font-size:1.5rem; color:var(--color-primary); }
+    .nav ul { list-style:none; display:flex; gap:1.5rem; margin:0; }
+    .nav ul li { position:relative; }
+    .nav a { font-weight:600; }
+    .nav .menu-toggle { display:none; background:none; border:none; font-size:1.5rem; cursor:pointer; }
+    /* Hero */
+    .hero {
+      background:url('static/img/imagen_1.jpg') center/cover no-repeat;
+      color:#fff; text-align:center; padding:8rem 2rem;
       display:flex; flex-direction:column; justify-content:center; align-items:center;
-      text-align:center; color:#fff;
     }
-    header::before {
-      content:""; position:absolute; inset:0;
-      background:rgba(0,0,0,0.4);
-    }
-    header > * { position:relative; z-index:1; }
-    h1 { font-family: var(--font-display); font-size: clamp(2.5rem,5vw,4rem); margin:0; }
-    .tagline { font-size:1.2rem; margin-top:.5rem; }
-    .cta { margin-top:1.5rem; }
-    .btn {
-      display:inline-block; padding:.75rem 1.5rem; border-radius:4px;
-      background:var(--color-primary); color:#fff; font-weight:700;
-      transition:background .3s;
-    }
-    .btn:hover,.btn:focus-visible { background:#5a0990; }
-    nav {
-      position:fixed; top:0; left:0; right:0; background:#fff;
-      box-shadow:0 2px 4px rgba(0,0,0,.1);
-      display:flex; justify-content:center; gap:2rem; padding:.5rem 0;
-      z-index:10;
-    }
-    nav a { font-weight:700; }
-    section { padding:4rem 1rem; max-width:1200px; margin:auto; }
-    .grid { display:grid; gap:2rem; }
-    @media (min-width:600px) {
-      .grid-2 { grid-template-columns:repeat(2,1fr); }
-      .grid-3 { grid-template-columns:repeat(3,1fr); }
+    .hero h1 { font-family:var(--font-display); font-size:2.5rem; margin:0; }
+    .hero p { font-size:1.2rem; margin:1rem 0; max-width:600px; }
+    .hero .cta { background:var(--color-accent); color:#000; padding:.75rem 1.5rem; border-radius:4px; font-weight:700; }
+    .hero .cta:hover { background:#f59e0b; }
+    /* Sections */
+    section { padding:4rem 2rem; }
+    .section-title { font-family:var(--font-display); font-size:2rem; text-align:center; margin-bottom:2rem; color:var(--color-primary); }
+    .grid {
+      display:grid; gap:2rem;
+      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
     }
     .card {
-      background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.1);
+      background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,.1);
+      transition:transform .3s;
     }
+    .card:hover { transform:translateY(-4px); }
     .card img { width:100%; height:auto; display:block; }
-    .card h3 { margin:0; padding:.75rem 1rem; font-family:var(--font-display); }
-    .card p { padding:0 1rem 1rem; margin:0; color:var(--color-muted); }
-    footer { background:#222; color:#ddd; text-align:center; padding:2rem 1rem; }
-    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
+    .card h3 { margin:1rem; font-family:var(--font-display); color:var(--color-primary); }
+    .card p { margin:0 1rem 1rem; font-size:.95rem; }
+    /* Contact */
+    .contact-box {
+      background:var(--color-primary); color:#fff; text-align:center; padding:3rem 2rem; border-radius:8px;
+    }
+    .contact-box a { color:#fff; font-weight:700; }
+    .contact-box .whatsapp { background:#25d366; padding:.75rem 1.5rem; border-radius:4px; margin-top:.5rem; display:inline-block; }
+    .contact-box .whatsapp:hover { background:#1ebe5d; }
+    footer { background:#111; color:#ccc; text-align:center; padding:1rem; font-size:.85rem; }
+    /* Accessibility & Motion */
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation-duration:0.001ms !important; transition:none !important; }
+      *, *::before, *::after { transition:none !important; }
+    }
+    @media (max-width:768px) {
+      .nav ul { flex-direction:column; background:#fff; position:absolute; top:100%; left:0; right:0; display:none; }
+      .nav ul.show { display:flex; }
+      .nav .menu-toggle { display:block; }
     }
   </style>
 </head>
 <body>
+  <header>
+    <nav class="nav" aria-label="Menú principal">
+      <div class="logo">Colección Jacqueline</div>
+      <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="Abrir menú">☰</button>
+      <ul id="primary-menu">
+        <li><a href="#hero">Inicio</a></li>
+        <li><a href="#catalogo">Catálogo</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<nav aria-label="Navegación principal">
-  <a href="#catalogo">Catálogo</a>
-  <a href="#servicios">Servicios</a>
-  <a href="#contacto">Contacto</a>
-</nav>
+  <section class="hero" id="hero">
+    <h1>Boutique femenina para eventos</h1>
+    <p>Vestidos largos, chaquetones, tocados y complementos exclusivos para que brilles en cada ocasión.</p>
+    <a href="#catalogo" class="cta">Ver catálogo</a>
+  </section>
 
-<header>
-  <h1>Colección Jacqueline</h1>
-  <p class="tagline">Boutique femenina para eventos en La Línea de la Concepción</p>
-  <div class="cta">
-    <a class="btn" href="https://wa.me/34635440061" target="_blank" rel="noopener">WhatsApp 635 44 00 61</a>
-  </div>
-</header>
-
-<main>
   <section id="catalogo">
-    <h2 style="font-family:var(--font-display); text-align:center;">Catálogo</h2>
-    <div class="grid grid-3">
-      <div class="card">
-        <img src="static/img/imagen_2.jpg" alt="Vestido largo elegante">
+    <h2 class="section-title">Catálogo</h2>
+    <div class="grid">
+      <article class="card">
+        <img src="static/img/imagen_2.jpg" alt="Vestidos largos">
         <h3>Vestidos largos</h3>
-        <p>Modelos exclusivos para bodas y eventos especiales.</p>
-      </div>
-      <div class="card">
-        <img src="static/img/imagen_3.jpg" alt="Chaquetón de fiesta">
+        <p>Diseños elegantes y atemporales para bodas y eventos especiales.</p>
+      </article>
+      <article class="card">
+        <img src="static/img/imagen_3.jpg" alt="Chaquetones">
         <h3>Chaquetones</h3>
-        <p>Chaquetones con acabados de lujo para complementar tu look.</p>
-      </div>
-      <div class="card">
-        <img src="static/img/imagen_4.png" alt="Tocado personalizado">
-        <h3>Tocados</h3>
-        <p>Tocados a medida para que brilles con luz propia.</p>
-      </div>
-      <div class="card">
-        <img src="static/img/imagen_5.jpg" alt="Estola de seda">
+        <p>Chaquetas estructuradas que complementan cualquier look de gala.</p>
+      </article>
+      <article class="card">
+        <img src="static/img/imagen_4.png" alt="Tocados">
+        <h3>Tocados personalizados</h3>
+        <p>Detalles artesanales que añaden distinción a tu peinado.</p>
+      </article>
+      <article class="card">
+        <img src="static/img/imagen_5.jpg" alt="Estolas">
         <h3>Estolas</h3>
-        <p>Estolas de seda y encaje, el toque final de elegancia.</p>
-      </div>
-      <div class="card">
-        <img src="static/img/imagen_6.png" alt="Bolso de noche">
-        <h3>Bolsos y complementos</h3>
-        <p>Complementos exclusivos que realzan cualquier atuendo.</p>
-      </div>
-      <div class="card">
+        <p>Accesorios de lujo para dar el toque final a tu atuendo.</p>
+      </article>
+      <article class="card">
+        <img src="static/img/imagen_6.png" alt="Complementos">
+        <h3>Complementos</h3>
+        <p>Bolsos y accesorios exclusivos para completar tu estilo.</p>
+      </article>
+      <article class="card">
         <img src="static/img/imagen_7.jpg" alt="Servicio de arreglos">
         <h3>Servicio de arreglos</h3>
-        <p>Modificaciones y ajustes para que tu prenda quede perfecta.</p>
-      </div>
+        <p>Modificaciones y ajustes a medida para que tu prenda quede perfecta.</p>
+      </article>
     </div>
   </section>
 
-  <section id="servicios" style="background:#fff;">
-    <h2 style="font-family:var(--font-display); text-align:center;">Servicios</h2>
-    <div class="grid grid-2">
-      <div>
+  <section id="servicios">
+    <h2 class="section-title">Servicios</h2>
+    <div class="grid">
+      <article class="card">
+        <img src="static/img/imagen_5.jpg" alt="Tocados personalizados">
         <h3>Tocados personalizados</h3>
-        <p>Diseñamos tocados a medida, con materiales de alta calidad, para que cada detalle cuente.</p>
-      </div>
-      <div>
+        <p>Creación a medida de tocados que reflejan tu personalidad y el estilo del evento.</p>
+      </article>
+      <article class="card">
+        <img src="static/img/imagen_6.png" alt="Complementos exclusivos">
+        <h3>Complementos exclusivos</h3>
+        <p>Bolsos, estolas y accesorios diseñados para realzar cualquier look.</p>
+      </article>
+      <article class="card">
+        <img src="static/img/imagen_7.jpg" alt="Arreglos y modificaciones">
         <h3>Arreglos y modificaciones</h3>
-        <p>Adaptamos cualquier prenda a tus medidas y gustos, garantizando un acabado impecable.</p>
-      </div>
+        <p>Servicio de sastrería para adaptar tus prendas a la medida exacta que necesitas.</p>
+      </article>
     </div>
   </section>
 
-  <section id="contacto">
-    <h2 style="font-family:var(--font-display); text-align:center;">Contacto</h2>
-    <p style="text-align:center;">¿Quieres asesoramiento personalizado? Escríbenos o llámanos.</p>
-    <div style="text-align:center; margin-top:1rem;">
-      <p><strong>Teléfono:</strong> <a href="tel:+34635440061">635 44 00 61</a></p>
-      <p><strong>WhatsApp:</strong> <a href="https://wa.me/34635440061" target="_blank" rel="noopener">Chat directo</a></p>
-      <p><strong>Dirección:</strong> <span class="sr-only">Consultar</span><a href="#" onclick="alert('Consultar'); return false;">Consultar</a></p>
-    </div>
+  <section id="contacto" class="contact-box">
+    <h2 class="section-title">Contacto</h2>
+    <p>¿Quieres asesoramiento personalizado? Escríbenos o llámanos.</p>
+    <p>Teléfono: <a href="tel:635440061">635 44 00 61</a></p>
+    <a class="whatsapp" href="https://wa.me/34635440061" target="_blank" rel="noopener">WhatsApp: 635 44 00 61</a>
   </section>
-</main>
 
-<footer>
-  <p>&copy; 2026 Colección Jacqueline – Todos los derechos reservados.</p>
-</footer>
+  <footer>
+    © 2026 Colección Jacqueline – Todos los derechos reservados.
+  </footer>
 
-<script>
-  // Smooth scroll for internal links, respecting prefers-reduced-motion
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!prefersReduced) {
-    document.querySelectorAll('nav a').forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        const target = document.querySelector(link.getAttribute('href'));
-        target.scrollIntoView({behavior:'smooth'});
-      });
+  <script>
+    // Menú móvil
+    const toggleBtn = document.querySelector('.menu-toggle');
+    const menu = document.getElementById('primary-menu');
+
+    toggleBtn.addEventListener('click', () => {
+      const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+      toggleBtn.setAttribute('aria-expanded', !expanded);
+      menu.classList.toggle('show');
     });
-  }
-</script>
+  </script>
 </body>
 </html>
