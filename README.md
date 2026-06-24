@@ -1,26 +1,16 @@
 ---
-title: Colección Jacqueline – Boutique de eventos
 sdk: static
-colorFrom: indigo
-colorTo: indigo
+title: Colección Jacqueline – Boutique de eventos
+colorFrom: purple
+colorTo: purple
 ---
-# Colección Jacqueline – Sitio estático
+# Colección Jacqueline
 
-Este repositorio contiene la versión estática y autocontenida de la web de **Colección Jacqueline**, una boutique especializada en vestidos de temporada, tocados personalizados y complementos exclusivos para eventos especiales.
+Esta es una web estática de una sola página que muestra el catálogo, los servicios y la galería de la boutique **Colección Jacqueline**.  
 
-## Estructura de archivos
+- **Sin frameworks ni build tools** – todo el CSS y JS está incluido en `index.html`.  
+- **Responsive** y accesible: foco visible, respeta `prefers-reduced-motion`.  
+- **Tipografía**: Playfair Display (display) + Montserrat (texto) desde Google Fonts.  
+- **Imágenes**: se usan las cinco fotos provistas en `static/img/imagen_1.jpg` … `imagen_5.jpg`.  
 
-- `index.html` – Página única, responsive, con CSS y JS embebidos.
-- `static/img/` – Carpeta con las 9 imágenes proporcionadas (imagen_1.jpg … imagen_9.jpg).
-
-## Cómo probar
-
-Abrir `index.html` en cualquier navegador moderno. La página se adapta a dispositivos móviles y respeta la preferencia de reducción de movimiento del usuario.
-
-## Personalización
-
-- Cambiar los colores principales modificando la variable `--color-primary` en el bloque `<style>` de `index.html`.
-- Añadir o modificar contenido textual directamente en el archivo HTML.
-- Las imágenes ya están referenciadas mediante rutas relativas; sustituirlas por otras manteniendo la misma estructura de carpetas si fuera necesario.
-
---- 
+Para publicar, basta con servir la carpeta que contiene `index.html` y `README.md`.  

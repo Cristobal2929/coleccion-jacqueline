@@ -1,189 +1,161 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Colección Jacqueline – Boutique de eventos</title>
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Google Fonts: Playfair Display (display) + Montserrat (texto) -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --font-display: 'Playfair Display', serif;
-      --font-body: 'Montserrat', sans-serif;
-      --color-primary: #4B0082; /* indigo */
+      --color-primary: #6a0dad;   /* purple */
       --color-bg: #fafafa;
       --color-text: #222;
+      --font-display: 'Playfair Display', serif;
+      --font-body: 'Montserrat', sans-serif;
     }
 
     *, *::before, *::after { box-sizing: border-box; }
     body {
-      margin:0;
-      font-family: var(--font-body);
+      margin:0; font-family: var(--font-body); color: var(--color-text);
       background: var(--color-bg);
-      color: var(--color-text);
       line-height: 1.6;
     }
     a { color: var(--color-primary); text-decoration: none; }
-    a:focus { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+    a:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
 
     header {
       position: relative;
-      height: 100vh;
       background: url('static/img/imagen_1.jpg') center/cover no-repeat;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
       color: #fff;
+      text-align: center;
+      padding: 4rem 1rem;
     }
     header::before {
       content:"";
-      position:absolute;
-      inset:0;
-      background:rgba(0,0,0,0.4);
+      position:absolute; inset:0;
+      background: rgba(0,0,0,0.4);
     }
-    nav {
-      position: absolute;
-      top:0;
-      left:0;
-      right:0;
-      padding:1rem 2rem;
-      display:flex;
-      justify-content: space-between;
-      align-items:center;
-      z-index:1;
-    }
-    nav a {
-      margin:0 .5rem;
-      font-weight:500;
-      color:#fff;
-    }
-    .hero-content {
+    header h1 {
       position:relative;
-      z-index:1;
-      max-width:800px;
-      margin:0 auto 4rem auto;
-      text-align:center;
-      padding:0 1rem;
-    }
-    .hero-content h1 {
       font-family: var(--font-display);
-      font-size: clamp(2.5rem, 8vw, 4rem);
-      margin-bottom:.5rem;
+      font-size: clamp(2rem,5vw,3.5rem);
+      margin:0;
     }
-    .hero-content p {
-      font-size:1.2rem;
-      margin-bottom:1.5rem;
+    header p {
+      position:relative;
+      margin-top:1rem;
+      font-size: 1.2rem;
     }
-    .hero-content button {
+    header .cta {
+      position:relative;
+      margin-top:2rem;
+    }
+    header .cta button {
+      font-family: var(--font-display);
       background: var(--color-primary);
       color:#fff;
       border:none;
-      padding:.75rem 1.5rem;
+      padding:.8rem 1.5rem;
       font-size:1rem;
       cursor:pointer;
       border-radius:4px;
+      transition: background .3s;
     }
-    .hero-content button:focus { outline:2px solid #fff; }
+    header .cta button:hover,
+    header .cta button:focus-visible { background:#5a0c9a; }
 
-    section { padding:4rem 1rem; }
+    nav {
+      display:flex;
+      justify-content:center;
+      gap:1.5rem;
+      background:#fff;
+      padding:.5rem 0;
+      position:sticky; top:0; z-index:10;
+      box-shadow:0 2px 4px rgba(0,0,0,.1);
+    }
+    nav a {
+      font-weight:600;
+      color: var(--color-text);
+    }
+
+    section { padding:3rem 1rem; max-width:1200px; margin:auto; }
     .section-title {
-      text-align:center;
       font-family: var(--font-display);
       font-size:2rem;
+      text-align:center;
       margin-bottom:2rem;
       color: var(--color-primary);
     }
 
-    .catalogue {
+    .grid {
       display:grid;
       gap:1.5rem;
-      grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
     }
+    @media (min-width:600px) {
+      .grid-2 { grid-template-columns:repeat(2,1fr); }
+      .grid-3 { grid-template-columns:repeat(3,1fr); }
+    }
+
     .card {
       background:#fff;
       border-radius:8px;
       overflow:hidden;
       box-shadow:0 2px 6px rgba(0,0,0,.1);
-      transition:transform .3s;
+      transition: transform .3s;
     }
-    .card:focus-without, .card:hover { transform:scale(1.02); }
-    .card img {
-      width:100%;
-      height:200px;
-      object-fit:cover;
-    }
+    .card:hover,
+    .card:focus-within { transform:translateY(-4px); }
+    .card img { width:100%; height:auto; display:block; }
     .card h3 {
       font-family: var(--font-display);
-      margin:1rem;
+      margin:0;
+      padding:1rem;
       font-size:1.25rem;
       color: var(--color-primary);
     }
     .card p {
-      margin:0 1rem 1rem;
+      padding:0 1rem 1rem;
+      margin:0;
     }
 
-    .services {
-      max-width:800px;
-      margin:auto;
+    .contact-form {
       display:flex;
       flex-direction:column;
-      gap:2rem;
-    }
-    .service-item {
-      display:flex;
-      align-items:center;
-      gap:1.5rem;
-    }
-    .service-item img {
-      width:80px;
-      height:80px;
-      object-fit:cover;
-      border-radius:8px;
-      flex-shrink:0;
-    }
-    .service-item h4 {
-      margin:0;
-      font-family: var(--font-display);
-      color: var(--color-primary);
-    }
-
-    .contact form {
+      gap:.8rem;
       max-width:500px;
       margin:auto;
-      display:flex;
-      flex-direction:column;
-      gap:.75rem;
     }
-    .contact input,
-    .contact textarea {
-      padding:.75rem;
+    .contact-form input,
+    .contact-form textarea {
+      padding:.6rem;
       border:1px solid #ccc;
       border-radius:4px;
-      font:inherit;
+      font-family: var(--font-body);
     }
-    .contact button {
+    .contact-form button {
       background: var(--color-primary);
       color:#fff;
       border:none;
-      padding:.75rem;
-      font-size:1rem;
+      padding:.8rem;
+      font-weight:600;
       cursor:pointer;
       border-radius:4px;
     }
-    .contact button:focus { outline:2px solid #fff; }
+    .contact-form button:hover,
+    .contact-form button:focus-visible { background:#5a0c9a; }
 
     footer {
       background:#222;
-      color:#fff;
+      color:#ddd;
       text-align:center;
-      padding:2rem 1rem;
+      padding:1.5rem;
       font-size:.9rem;
     }
 
+    /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { transition:none !important; }
     }
@@ -191,111 +163,103 @@
 </head>
 <body>
 
-<header id="inicio">
   <nav aria-label="Navegación principal">
-    <a href="#inicio">Inicio</a>
     <a href="#catalogo">Catálogo</a>
     <a href="#servicios">Servicios</a>
+    <a href="#galeria">Galería</a>
     <a href="#contacto">Contacto</a>
   </nav>
-  <div class="hero-content">
+
+  <header>
     <h1>Colección Jacqueline</h1>
-    <p>Boutique femenina para eventos: vestidos de temporada, tocados personalizados y complementos exclusivos.</p>
-    <button onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'});">
-      Solicita información
-    </button>
-  </div>
-</header>
+    <p>Boutique femenina para eventos: vestidos, tocados y complementos exclusivos</p>
+    <div class="cta">
+      <button id="scrollToCatalog">Ver catálogo</button>
+    </div>
+  </header>
 
-<section id="catalogo">
-  <h2 class="section-title">Catálogo</h2>
-  <div class="catalogue">
-    <div class="card" tabindex="0">
-      <img src="static/img/imagen_2.jpg" alt="Vestidos largos">
-      <h3>Vestidos largos</h3>
-      <p>Diseños elegantes para bodas y eventos especiales.</p>
+  <section id="catalogo">
+    <h2 class="section-title">Catálogo</h2>
+    <div class="grid grid-3">
+      <article class="card" tabindex="0">
+        <img src="static/img/imagen_2.jpg" alt="Vestidos largos">
+        <h3>Vestidos largos</h3>
+        <p>Diseños elegantes para bodas y eventos especiales.</p>
+      </article>
+      <article class="card" tabindex="0">
+        <img src="static/img/imagen_3.jpg" alt="Chaquetones">
+        <h3>Chaquetones</h3>
+        <p>Chaquetones de temporada que complementan cualquier look.</p>
+      </article>
+      <article class="card" tabindex="0">
+        <img src="static/img/imagen_4.jpg" alt="Tocados personalizados">
+        <h3>Tocados</h3>
+        <p>Peinados y tocados a medida para que brilles como nadie.</p>
+      </article>
     </div>
-    <div class="card" tabindex="0">
-      <img src="static/img/imagen_3.jpg" alt="Chaquetones">
-      <h3>Chaquetones</h3>
-      <p>Chaquetones de temporada para complementar cualquier look.</p>
-    </div>
-    <div class="card" tabindex="0">
-      <img src="static/img/imagen_4.jpg" alt="Tocados personalizados">
-      <h3>Tocados</h3>
-      <p>Tocados a medida para que tu estilo sea único.</p>
-    </div>
-    <div class="card" tabindex="0">
-      <img src="static/img/imagen_5.jpg" alt="Complementos">
-      <h3>Complementos</h3>
-      <p>Bolsos y accesorios exclusivos.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section id="servicios">
-  <h2 class="section-title">Servicios</h2>
-  <div class="services">
-    <div class="service-item">
-      <img src="static/img/imagen_6.png" alt="Tocados personalizados">
-      <div>
-        <h4>Tocados personalizados</h4>
-        <p>Diseñamos y confeccionamos tocados a medida para cualquier ocasión.</p>
-      </div>
-    </div>
-    <div class="service-item">
-      <img src="static/img/imagen_7.jpg" alt="Complementos exclusivos">
-      <div>
-        <h4>Complementos</h4>
-        <p>Bolsos y accesorios que completan tu look con elegancia.</p>
-      </div>
-    </div>
-    <div class="service-item">
-      <img src="static/img/imagen_8.png" alt="Arreglos y modificaciones">
-      <div>
-        <h4>Arreglos y modificaciones</h4>
+  <section id="servicios">
+    <h2 class="section-title">Servicios</h2>
+    <div class="grid grid-2">
+      <article class="card" tabindex="0">
+        <img src="static/img/imagen_5.jpg" alt="Complementos exclusivos">
+        <h3>Complementos</h3>
+        <p>Bolsos y accesorios únicos que completan tu estilo.</p>
+      </article>
+      <article class="card" tabindex="0">
+        <img src="static/img/imagen_1.jpg" alt="Arreglos y modificaciones">
+        <h3>Arreglos y modificaciones</h3>
         <p>Servicio de ajustes y personalizaciones de trajes y vestidos.</p>
-      </div>
+      </article>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="contacto" class="contact">
-  <h2 class="section-title">Contacto</h2>
-  <form aria-label="Formulario de contacto">
-    <label>
-      Nombre
-      <input type="text" name="nombre" required placeholder="Tu nombre">
-    </label>
-    <label>
-      Correo electrónico
-      <input type="email" name="email" required placeholder="tucorreo@ejemplo.com">
-    </label>
-    <label>
-      Mensaje
-      <textarea name="mensaje" rows="4" required placeholder="Cuéntanos tu proyecto"></textarea>
-    </label>
-    <button type="submit">Enviar</button>
-  </form>
-  <p style="text-align:center;margin-top:1rem;">¿Prefieres hablar? <strong>Consultar</strong></p>
-</section>
+  <section id="galeria">
+    <h2 class="section-title">Galería</h2>
+    <div class="grid grid-3">
+      <img src="static/img/imagen_1.jpg" alt="Evento con vestido y tocado" loading="lazy">
+      <img src="static/img/imagen_2.jpg" alt="Detalle de complementos" loading="lazy">
+      <img src="static/img/imagen_3.jpg" alt="Chaquetón en pasarela" loading="lazy">
+      <img src="static/img/imagen_4.jpg" alt="Tocado personalizado" loading="lazy">
+      <img src="static/img/imagen_5.jpg" alt="Bolso de edición limitada" loading="lazy">
+    </div>
+  </section>
 
-<footer>
-  <p>&copy; 2024 Colección Jacqueline – Todos los derechos reservados.</p>
-</footer>
+  <section id="contacto">
+    <h2 class="section-title">Contacto</h2>
+    <p style="text-align:center;">¿Quieres asesoramiento personalizado? Escríbenos o consulta vía WhatsApp.</p>
+    <div class="contact-form">
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" placeholder="Tu nombre">
 
-<script>
-  // Smooth scroll for browsers that support it, respecting prefers-reduced-motion
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!prefersReduced) {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        target.scrollIntoView({behavior: 'smooth'});
-      });
+      <label for="mensaje">Mensaje</label>
+      <textarea id="mensaje" rows="4" placeholder="Cuéntanos tu necesidad"></textarea>
+
+      <button type="button" id="sendMessage">Enviar</button>
+
+      <p style="text-align:center;">
+        WhatsApp: <a href="[TU WHATSAPP]" target="_blank">[TU WHATSAPP]</a>
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    © 2024 Colección Jacqueline – Todos los derechos reservados.
+  </footer>
+
+  <script>
+    // Scroll to catalog button
+    document.getElementById('scrollToCatalog').addEventListener('click', function(){
+      document.getElementById('catalogo').scrollIntoView({behavior:'smooth'});
     });
-  }
-</script>
+
+    // Simulated send (no backend)
+    document.getElementById('sendMessage').addEventListener('click', function(){
+      alert('Gracias por tu mensaje. Nos pondremos en contacto pronto.');
+    });
+
+    // Keyboard navigation visual cue (already handled by CSS :focus-visible)
+  </script>
 </body>
 </html>
