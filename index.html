@@ -4,167 +4,63 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Colección Jacqueline – Boutique de eventos</title>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --font-display: 'Playfair Display', serif;
-      --font-body: 'Lato', sans-serif;
-      --color-primary: #6a0dad; /* purple */
-      --color-bg: #fafafa;
-      --color-text: #222;
-      --focus-ring: 2px solid var(--color-primary);
+      --primary: #6a0dad;               /* purple */
+      --bg: #fafafa;
+      --text: #222;
+      --accent: #d4b0ff;
     }
-    *, *::before, *::after { box-sizing: border-box; }
+    *, *::before, *::after { box-sizing:border-box; }
     body {
-      margin:0;
-      font-family: var(--font-body);
-      background: var(--color-bg);
-      color: var(--color-text);
-      line-height: 1.6;
+      margin:0; font-family: 'Montserrat', sans-serif;
+      background:#fafafa; color:#222; line-height:1.6;
     }
-    a { color: var(--color-primary); text-decoration: none; }
-    a:focus { outline: var(--focus-ring); }
-
-    header {
-      position: relative;
-      overflow: hidden;
-    }
+    a { color:var(--primary); text-decoration:none; }
+    a:focus-visible { outline:2px solid var(--primary); outline-offset:2px; }
+    header { position:sticky; top:0; background:#fff; z-index:10; box-shadow:0 2px 4px rgba(0,0,0,.1); }
+    nav { display:flex; justify-content:center; gap:2rem; padding:1rem; }
+    nav a { font-weight:500; }
     .hero {
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-      min-height:70vh;
-      background: url('static/img/imagen_1.jpg') center/cover no-repeat;
-      color:#fff;
+      position:relative; height:70vh; min-height:400px;
+      background:url('static/img/imagen_1.jpg') center/cover no-repeat;
+      display:flex; align-items:center; justify-content:center;
+      color:#fff; text-align:center;
     }
-    .hero::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:rgba(0,0,0,0.4);
+    .hero::before {
+      content:""; position:absolute; inset:0;
+      background:linear-gradient(180deg, rgba(106,13,173,.7), rgba(106,13,173,.3));
     }
-    .hero > *{position:relative;z-index:1;}
-    .hero h1{
-      font-family: var(--font-display);
-      font-size: clamp(2rem,5vw,3.5rem);
-      margin:0;
+    .hero h1 {
+      font-family:'Playfair Display',serif; font-size:2.5rem; margin:0;
     }
-    .hero p{
-      font-size:1.2rem;
-      margin:1rem 0;
+    .hero p { font-size:1.2rem; margin-top:.5rem; }
+    .section { padding:3rem 1rem; max-width:1200px; margin:auto; }
+    .section h2 {
+      font-family:'Playfair Display',serif; font-size:2rem;
+      text-align:center; margin-bottom:2rem; color:var(--primary);
     }
-    .hero .cta{
-      background: var(--color-primary);
-      color:#fff;
-      padding:.8rem 1.5rem;
-      border:none;
-      border-radius:4px;
-      cursor:pointer;
-      font-weight:700;
+    .grid {
+      display:grid; gap:1.5rem;
+      grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
     }
-    .hero .cta:focus{outline:var(--focus-ring);}
-
-    nav {
-      display:flex;
-      justify-content:center;
-      gap:1.5rem;
-      padding:1rem;
-      background:#fff;
-      position:sticky;
-      top:0;
-      z-index:10;
+    .card {
+      background:#fff; border-radius:8px; overflow:hidden;
+      box-shadow:0 2px 6px rgba(0,0,0,.1);
+      transition:transform .3s;
     }
-    nav a{
-      font-weight:700;
-      padding:.3rem .6rem;
+    .card:hover, .card:focus-within { transform:translateY(-4px); }
+    .card img { width:100%; height:200px; object-fit:cover; }
+    .card h3 { margin:1rem; font-size:1.25rem; color:var(--primary); }
+    .card p { margin:0 1rem 1rem; font-size:.95rem; }
+    .btn {
+      display:inline-block; padding:.75rem 1.5rem;
+      background:var(--primary); color:#fff; border:none;
+      border-radius:4px; cursor:pointer; font-weight:500;
     }
-    nav a:focus{outline:var(--focus-ring);}
-
-    section{
-      padding:3rem 1rem;
-      max-width:1200px;
-      margin:auto;
-    }
-    .services{
-      display:grid;
-      gap:2rem;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    }
-    .service-card{
-      background:#fff;
-      border-radius:8px;
-      overflow:hidden;
-      box-shadow:0 2px 6px rgba(0,0,0,0.1);
-      transition:transform .2s;
-    }
-    .service-card:focus-within,
-    .service-card:hover{
-      transform:scale(1.02);
-    }
-    .service-card img{
-      width:100%;
-      height:200px;
-      object-fit:cover;
-    }
-    .service-card h3{
-      font-family:var(--font-display);
-      margin:1rem;
-      font-size:1.4rem;
-    }
-    .service-card p{
-      margin:0 1rem 1rem;
-    }
-
-    .gallery{
-      display:grid;
-      gap:1rem;
-      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    }
-    .gallery img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      border-radius:6px;
-    }
-
-    .contact{
-      background: var(--color-primary);
-      color:#fff;
-      text-align:center;
-      border-radius:8px;
-      padding:2rem;
-    }
-    .contact h2{
-      font-family: var(--font-display);
-      margin-bottom:.5rem;
-    }
-    .contact p{
-      margin:0.5rem 0;
-    }
-    .contact .btn{
-      background:#fff;
-      color:var(--color-primary);
-      padding:.8rem 1.5rem;
-      border:none;
-      border-radius:4px;
-      cursor:pointer;
-      font-weight:700;
-      margin-top:1rem;
-    }
-    .contact .btn:focus{outline:var(--focus-ring);}
-
-    footer{
-      text-align:center;
-      padding:1rem;
-      font-size:.9rem;
-      color:#666;
-    }
-
+    .btn:hover, .btn:focus-visible { background:#5a0b9c; }
+    footer { background:#fff; text-align:center; padding:2rem 1rem; font-size:.9rem; }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { transition:none !important; }
     }
@@ -174,75 +70,101 @@
 
 <header>
   <nav aria-label="Navegación principal">
-    <a href="#servicios">Servicios</a>
     <a href="#catalogo">Catálogo</a>
+    <a href="#servicios">Servicios</a>
     <a href="#contacto">Contacto</a>
   </nav>
-
-  <section class="hero" aria-label="Sección principal">
-    <h1>Colección Jacqueline</h1>
-    <p>Boutique femenina para eventos: vestidos, tocados y complementos exclusivos.</p>
-    <button class="cta" onclick="openWhatsApp()">Solicita tu asesoría</button>
-  </section>
 </header>
 
-<main>
-  <section id="servicios">
-    <h2 style="font-family:var(--font-display);text-align:center;">Nuestros Servicios</h2>
-    <div class="services">
-      <article class="service-card" tabindex="0">
-        <img src="static/img/imagen_2.jpg" alt="Tocados personalizados">
-        <h3>Tocados Personalizados</h3>
-        <p>Diseños únicos para que tu look sea inolvidable.</p>
-      </article>
-      <article class="service-card" tabindex="0">
-        <img src="static/img/imagen_3.jpg" alt="Complementos exclusivos">
-        <h3>Complementos</h3>
-        <p>Bolsos y accesorios de temporada, creados con detalle.</p>
-      </article>
-      <article class="service-card" tabindex="0">
-        <img src="static/img/imagen_4.jpg" alt="Arreglos y modificaciones">
-        <h3>Arreglos y Modificaciones</h3>
-        <p>Adaptamos cualquier prenda a tus necesidades para el día especial.</p>
-      </article>
-    </div>
-  </section>
+<section class="hero" aria-label="Hero">
+  <div>
+    <h1>Colección Jacqueline</h1>
+    <p>Vestidos de boda y complementos para brillar en tu día especial</p>
+    <a href="#catalogo" class="btn">Descubre el catálogo</a>
+  </div>
+</section>
 
-  <section id="catalogo">
-    <h2 style="font-family:var(--font-display);text-align:center;">Catálogo Destacado</h2>
-    <div class="gallery">
-      <img src="static/img/imagen_1.jpg" alt="Vestido largo de boda">
-      <img src="static/img/imagen_2.jpg" alt="Tocado elegante">
-      <img src="static/img/imagen_3.jpg" alt="Bolso de temporada">
-      <img src="static/img/imagen_4.jpg" alt="Detalle de complemento">
-      <img src="static/img/imagen_5.jpg" alt="Chaquetón de fiesta">
-    </div>
-  </section>
+<section id="catalogo" class="section">
+  <h2>Catálogo</h2>
+  <div class="grid">
+    <article class="card" tabindex="0">
+      <img src="static/img/imagen_2.jpg" alt="Vestidos largos">
+      <h3>Vestidos largos</h3>
+      <p>Diseños exclusivos para bodas y eventos elegantes.</p>
+    </article>
+    <article class="card" tabindex="0">
+      <img src="static/img/imagen_3.jpg" alt="Chaquetones">
+      <h3>Chaquetones</h3>
+      <p>Chaquetones de alta costura que complementan cualquier look.</p>
+    </article>
+    <article class="card" tabindex="0">
+      <img src="static/img/imagen_4.jpg" alt="Tocados">
+      <h3>Tocados</h3>
+      <p>Tocados personalizados para un toque único.</p>
+    </article>
+    <article class="card" tabindex="0">
+      <img src="static/img/imagen_5.jpg" alt="Estolas">
+      <h3>Estolas</h3>
+      <p>Estolas de seda y encaje para realzar tu presencia.</p>
+    </article>
+    <article class="card" tabindex="0">
+      <img src="static/img/imagen_6.jpg" alt="Complementos">
+      <h3>Complementos</h3>
+      <p>Bolsos y accesorios exclusivos para el día de tu evento.</p>
+    </article>
+  </div>
+</section>
 
-  <section id="contacto" class="contact">
-    <h2>¿Quieres brillar?</h2>
-    <p>Programa una llamada o escríbenos por WhatsApp.</p>
-    <button class="btn" onclick="openWhatsApp()">[TU WHATSAPP]</button>
-  </section>
-</main>
+<section id="servicios" class="section">
+  <h2>Servicios</h2>
+  <div class="grid">
+    <article class="card" tabindex="0">
+      <img src="static/img/imagen_7.png" alt="Asesoría personalizada">
+      <h3>Asesoría personalizada</h3>
+      <p>Te acompañamos en la elección del look perfecto.</p>
+    </article>
+    <article class="card" tabindex="0">
+      <img src="static/img/imagen_8.jpg" alt="Tocados personalizados">
+      <h3>Tocados personalizados</h3>
+      <p>Diseñamos tocados a medida para tu estilo.</p>
+    </article>
+    <article class="card" tabindex="0">
+      <img src="static/img/imagen_9.png" alt="Servicio de arreglos">
+      <h3>Arreglos y modificaciones</h3>
+      <p>Adaptamos cualquier prenda a tus medidas y gustos.</p>
+    </article>
+  </div>
+</section>
+
+<section id="contacto" class="section">
+  <h2>Contacto</h2>
+  <p style="text-align:center;">
+    <strong>Teléfono:</strong> <a href="tel:+34635440061">635 44 00 61</a><br>
+    <strong>WhatsApp:</strong> <a href="https://wa.me/34635440061" target="_blank" rel="noopener">Enviar mensaje</a><br>
+    <strong>Dirección:</strong> <em>Consultar</em>
+  </p>
+  <p style="text-align:center;">
+    ¿Quieres una cita? <a href="https://wa.me/34635440061" class="btn">Reserva tu llamada</a>
+  </p>
+</section>
 
 <footer>
-  © 2024 Colección Jacqueline – Todos los derechos reservados.
+  © 2026 Colección Jacqueline – Todos los derechos reservados.
 </footer>
 
 <script>
-  function openWhatsApp(){
-    // Si dispones de número, reemplaza el marcador por el enlace real.
-    const url = 'https://wa.me/34XXXXXXXXX'; // <--- sustituye X por tu número
-    window.open(url, '_blank');
-  }
-
-  // Navegación accesible con teclado (cierre de menú en caso de futuro hamburguesa)
-  document.querySelectorAll('nav a').forEach(link=>{
-    link.addEventListener('keydown', e=>{
-      if(e.key==='Enter' || e.key===' ') link.click();
+  // Smooth scroll for anchor links (only if motion is allowed)
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReduced) {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e){
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
     });
-  });
+  }
 </script>
 </body>
 </html>
