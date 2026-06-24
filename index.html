@@ -4,175 +4,295 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Colección Jacqueline – Boutique de eventos</title>
+
   <!-- Google Fonts: Playfair Display (display) + Lato (texto) -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --color-primary: #1e3a8a;   /* indigo‑900 */
-      --color-accent:  #fbbf24;   /* amber‑400 */
+      --color-primary: #5b2c6f;   /* púrpura elegante */
+      --color-accent:  #d4af37;   /* oro suave */
       --font-display: 'Playfair Display', serif;
-      --font-body: 'Lato', sans-serif;
+      --font-text: 'Lato', sans-serif;
     }
-    *, *::before, *::after { box-sizing: border-box; }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
     body {
-      margin:0; font-family: var(--font-body); line-height:1.6; color:#333;
-      background:#fafafa;
+      margin:0;
+      font-family: var(--font-text);
+      line-height: 1.6;
+      color: #333;
+      background: #fafafa;
     }
-    a { color: var(--color-primary); text-decoration:none; }
-    a:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+
+    a {
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+    a:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+    }
+
     header {
-      position:sticky; top:0; background:#fff; z-index:10; box-shadow:0 2px 4px rgba(0,0,0,.1);
+      background: var(--color-primary);
+      color:#fff;
     }
     .nav {
-      display:flex; justify-content:space-between; align-items:center; padding:1rem 2rem;
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      padding:1rem 2rem;
     }
-    .nav .logo { font-family:var(--font-display); font-size:1.5rem; color:var(--color-primary); }
-    .nav ul { list-style:none; display:flex; gap:1.5rem; margin:0; }
-    .nav ul li { position:relative; }
-    .nav a { font-weight:600; }
-    .nav .menu-toggle { display:none; background:none; border:none; font-size:1.5rem; cursor:pointer; }
-    /* Hero */
+    .nav a {
+      color:#fff;
+      margin-left:1.5rem;
+      font-weight:700;
+    }
+
     .hero {
-      background:url('static/img/imagen_1.jpg') center/cover no-repeat;
-      color:#fff; text-align:center; padding:8rem 2rem;
-      display:flex; flex-direction:column; justify-content:center; align-items:center;
+      position:relative;
+      text-align:center;
+      color:#fff;
     }
-    .hero h1 { font-family:var(--font-display); font-size:2.5rem; margin:0; }
-    .hero p { font-size:1.2rem; margin:1rem 0; max-width:600px; }
-    .hero .cta { background:var(--color-accent); color:#000; padding:.75rem 1.5rem; border-radius:4px; font-weight:700; }
-    .hero .cta:hover { background:#f59e0b; }
-    /* Sections */
-    section { padding:4rem 2rem; }
-    .section-title { font-family:var(--font-display); font-size:2rem; text-align:center; margin-bottom:2rem; color:var(--color-primary); }
-    .grid {
-      display:grid; gap:2rem;
-      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    .hero img {
+      width:100%;
+      height:auto;
+      display:block;
     }
-    .card {
-      background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,.1);
+    .hero .overlay {
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,0.4);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      padding:2rem;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size:2.5rem;
+      margin:0;
+    }
+    .hero p {
+      font-size:1.2rem;
+      margin-top:0.5rem;
+    }
+    .hero .cta {
+      margin-top:1.5rem;
+      background:var(--color-accent);
+      color:#000;
+      padding:.75rem 1.5rem;
+      border-radius:4px;
+      font-weight:700;
+    }
+
+    section {
+      padding:3rem 2rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size:2rem;
+      text-align:center;
+      margin-bottom:2rem;
+      color: var(--color-primary);
+    }
+
+    .services {
+      display:grid;
+      gap:2rem;
+      grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+    }
+    .service-card {
+      background:#fff;
+      border-radius:8px;
+      overflow:hidden;
+      box-shadow:0 2px 6px rgba(0,0,0,0.1);
       transition:transform .3s;
     }
-    .card:hover { transform:translateY(-4px); }
-    .card img { width:100%; height:auto; display:block; }
-    .card h3 { margin:1rem; font-family:var(--font-display); color:var(--color-primary); }
-    .card p { margin:0 1rem 1rem; font-size:.95rem; }
-    /* Contact */
-    .contact-box {
-      background:var(--color-primary); color:#fff; text-align:center; padding:3rem 2rem; border-radius:8px;
+    .service-card:hover,
+    .service-card:focus-within {
+      transform:translateY(-4px);
     }
-    .contact-box a { color:#fff; font-weight:700; }
-    .contact-box .whatsapp { background:#25d366; padding:.75rem 1.5rem; border-radius:4px; margin-top:.5rem; display:inline-block; }
-    .contact-box .whatsapp:hover { background:#1ebe5d; }
-    footer { background:#111; color:#ccc; text-align:center; padding:1rem; font-size:.85rem; }
-    /* Accessibility & Motion */
+    .service-card img {
+      width:100%;
+      height:auto;
+      display:block;
+    }
+    .service-card h3 {
+      font-family: var(--font-display);
+      font-size:1.25rem;
+      margin:1rem;
+      color: var(--color-primary);
+    }
+    .service-card p {
+      margin:0 1rem 1rem;
+    }
+
+    .contact {
+      background: var(--color-primary);
+      color:#fff;
+    }
+    .contact .content {
+      max-width:800px;
+      margin:auto;
+      text-align:center;
+    }
+    .contact a {
+      color:#fff;
+      text-decoration:underline;
+    }
+    .contact .whatsapp {
+      display:inline-block;
+      margin-top:1rem;
+      background:var(--color-accent);
+      color:#000;
+      padding:.5rem 1rem;
+      border-radius:4px;
+      font-weight:700;
+    }
+
+    .gallery {
+      display:grid;
+      gap:1rem;
+      grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+    }
+    .gallery img {
+      width:100%;
+      height:auto;
+      border-radius:4px;
+      object-fit:cover;
+    }
+
+    footer {
+      background:#222;
+      color:#ccc;
+      text-align:center;
+      padding:1rem;
+      font-size:.9rem;
+    }
+
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { transition:none !important; }
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        transition-duration: 0.001ms !important;
+      }
     }
-    @media (max-width:768px) {
-      .nav ul { flex-direction:column; background:#fff; position:absolute; top:100%; left:0; right:0; display:none; }
-      .nav ul.show { display:flex; }
-      .nav .menu-toggle { display:block; }
+
+    @media (max-width:600px) {
+      .nav {
+        flex-direction:column;
+      }
+      .nav a {
+        margin:0.5rem 0;
+      }
+      .hero h1 {
+        font-size:2rem;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <nav class="nav" aria-label="Menú principal">
-      <div class="logo">Colección Jacqueline</div>
-      <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="Abrir menú">☰</button>
-      <ul id="primary-menu">
-        <li><a href="#hero">Inicio</a></li>
-        <li><a href="#catalogo">Catálogo</a></li>
-        <li><a href="#servicios">Servicios</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <section class="hero" id="hero">
-    <h1>Boutique femenina para eventos</h1>
-    <p>Vestidos largos, chaquetones, tocados y complementos exclusivos para que brilles en cada ocasión.</p>
-    <a href="#catalogo" class="cta">Ver catálogo</a>
-  </section>
-
-  <section id="catalogo">
-    <h2 class="section-title">Catálogo</h2>
-    <div class="grid">
-      <article class="card">
-        <img src="static/img/imagen_2.jpg" alt="Vestidos largos">
-        <h3>Vestidos largos</h3>
-        <p>Diseños elegantes y atemporales para bodas y eventos especiales.</p>
-      </article>
-      <article class="card">
-        <img src="static/img/imagen_3.jpg" alt="Chaquetones">
-        <h3>Chaquetones</h3>
-        <p>Chaquetas estructuradas que complementan cualquier look de gala.</p>
-      </article>
-      <article class="card">
-        <img src="static/img/imagen_4.png" alt="Tocados">
-        <h3>Tocados personalizados</h3>
-        <p>Detalles artesanales que añaden distinción a tu peinado.</p>
-      </article>
-      <article class="card">
-        <img src="static/img/imagen_5.jpg" alt="Estolas">
-        <h3>Estolas</h3>
-        <p>Accesorios de lujo para dar el toque final a tu atuendo.</p>
-      </article>
-      <article class="card">
-        <img src="static/img/imagen_6.png" alt="Complementos">
-        <h3>Complementos</h3>
-        <p>Bolsos y accesorios exclusivos para completar tu estilo.</p>
-      </article>
-      <article class="card">
-        <img src="static/img/imagen_7.jpg" alt="Servicio de arreglos">
-        <h3>Servicio de arreglos</h3>
-        <p>Modificaciones y ajustes a medida para que tu prenda quede perfecta.</p>
-      </article>
+<header>
+  <nav class="nav" aria-label="Navegación principal">
+    <div class="logo"><strong>Colección Jacqueline</strong></div>
+    <div class="links">
+      <a href="#servicios">Servicios</a>
+      <a href="#galeria">Galería</a>
+      <a href="#contacto">Contacto</a>
     </div>
-  </section>
+  </nav>
+</header>
 
-  <section id="servicios">
-    <h2 class="section-title">Servicios</h2>
-    <div class="grid">
-      <article class="card">
-        <img src="static/img/imagen_5.jpg" alt="Tocados personalizados">
-        <h3>Tocados personalizados</h3>
-        <p>Creación a medida de tocados que reflejan tu personalidad y el estilo del evento.</p>
-      </article>
-      <article class="card">
-        <img src="static/img/imagen_6.png" alt="Complementos exclusivos">
-        <h3>Complementos exclusivos</h3>
-        <p>Bolsos, estolas y accesorios diseñados para realzar cualquier look.</p>
-      </article>
-      <article class="card">
-        <img src="static/img/imagen_7.jpg" alt="Arreglos y modificaciones">
-        <h3>Arreglos y modificaciones</h3>
-        <p>Servicio de sastrería para adaptar tus prendas a la medida exacta que necesitas.</p>
-      </article>
-    </div>
-  </section>
+<section class="hero" id="inicio">
+  <img src="static/img/imagen_1.jpg" alt="Modelo con vestido largo de la colección">
+  <div class="overlay">
+    <h1>Brilla en cada ocasión</h1>
+    <p>Vestidos, tocados y complementos exclusivos para eventos especiales.</p>
+    <a href="#contacto" class="cta">Solicita tu asesoría</a>
+  </div>
+</section>
 
-  <section id="contacto" class="contact-box">
+<section id="servicios">
+  <h2 class="section-title">Nuestros Servicios</h2>
+  <div class="services">
+    <article class="service-card" tabindex="0">
+      <img src="static/img/imagen_2.jpg" alt="Vestido largo elegante">
+      <h3>Vestidos largos</h3>
+      <p>Diseños atemporales para bodas y galas.</p>
+    </article>
+    <article class="service-card" tabindex="0">
+      <img src="static/img/imagen_3.jpg" alt="Chaquetón de fiesta">
+      <h3>Chaquetones</h3>
+      <p>Prendas de temporada que combinan estilo y calidez.</p>
+    </article>
+    <article class="service-card" tabindex="0">
+      <img src="static/img/imagen_4.png" alt="Tocado personalizado">
+      <h3>Tocados personalizados</h3>
+      <p>Detalles únicos que realzan tu look.</p>
+    </article>
+    <article class="service-card" tabindex="0">
+      <img src="static/img/imagen_5.jpg" alt="Estola de lujo">
+      <h3>Estolas</h3>
+      <p>Complementos de seda y encaje para un toque de distinción.</p>
+    </article>
+    <article class="service-card" tabindex="0">
+      <img src="static/img/imagen_6.png" alt="Servicio de arreglos">
+      <h3>Arreglos y modificaciones</h3>
+      <p>Adaptamos cualquier prenda a tu medida y estilo.</p>
+    </article>
+    <article class="service-card" tabindex="0">
+      <img src="static/img/imagen_7.jpg" alt="Bolso de mano elegante">
+      <h3>Complementos</h3>
+      <p>Bolsos y accesorios exclusivos para completar tu outfit.</p>
+    </article>
+  </div>
+</section>
+
+<section id="galeria" class="gallery">
+  <h2 class="section-title">Galería</h2>
+  <img src="static/img/imagen_1.jpg" alt="Modelo con vestido largo">
+  <img src="static/img/imagen_2.jpg" alt="Detalle de vestido">
+  <img src="static/img/imagen_3.jpg" alt="Chaquetón en pasarela">
+  <img src="static/img/imagen_4.png" alt="Tocado artesanal">
+  <img src="static/img/imagen_5.jpg" alt="Estola delicada">
+  <img src="static/img/imagen_6.png" alt="Trabajo de arreglos">
+  <img src="static/img/imagen_7.jpg" alt="Bolso de diseño">
+</section>
+
+<section id="contacto" class="contact">
+  <div class="content">
     <h2 class="section-title">Contacto</h2>
-    <p>¿Quieres asesoramiento personalizado? Escríbenos o llámanos.</p>
-    <p>Teléfono: <a href="tel:635440061">635 44 00 61</a></p>
+    <p>¿Quieres una asesoría personalizada? Escríbenos o llama.</p>
+    <p>Teléfono: <a href="tel:+34635440061">635 44 00 61</a></p>
     <a class="whatsapp" href="https://wa.me/34635440061" target="_blank" rel="noopener">WhatsApp: 635 44 00 61</a>
-  </section>
+    <p>Correo: <em>Consultar</em></p>
+  </div>
+</section>
 
-  <footer>
-    © 2026 Colección Jacqueline – Todos los derechos reservados.
-  </footer>
+<footer>
+  © 2024 Colección Jacqueline – Todos los derechos reservados.
+</footer>
 
-  <script>
-    // Menú móvil
-    const toggleBtn = document.querySelector('.menu-toggle');
-    const menu = document.getElementById('primary-menu');
-
-    toggleBtn.addEventListener('click', () => {
-      const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-      toggleBtn.setAttribute('aria-expanded', !expanded);
-      menu.classList.toggle('show');
+<script>
+  // Smooth scroll for anchor links (only if motion is allowed)
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReduced) {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        target.scrollIntoView({ behavior: 'smooth' });
+      });
     });
-  </script>
+  }
+</script>
 </body>
 </html>
