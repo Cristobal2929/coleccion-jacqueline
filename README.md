@@ -1,5 +1,3 @@
----
-title: "Colección Jacqueline – Boutique de eventos"
-description: "Sitio web estático de una boutique de eventos que muestra catálogo, servicios y formulario de contacto."
+title: Colección Jacqueline – Boutique de eventos
+description: Página web estática de una boutique femenina de ropa para eventos en La Línea de la Concepción.
 sdk: static
----
