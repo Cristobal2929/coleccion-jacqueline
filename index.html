@@ -1,136 +1,68 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Colección Jacqueline – Boutique de eventos</title>
 
-  <!-- Google Fonts: Playfair Display (display) + Montserrat (texto) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Google Fonts: Playfair Display (display) + Lato (texto) -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --color-primary: #6a0dad; /* purple */
+      --color-primary: #6a0dad;   /* purple */
       --color-bg: #fafafa;
       --color-text: #222;
       --font-display: 'Playfair Display', serif;
-      --font-body: 'Montserrat', sans-serif;
+      --font-body: 'Lato', sans-serif;
     }
 
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-
+    *, *::before, *::after { box-sizing: border-box; }
     body {
-      margin: 0;
+      margin:0;
       font-family: var(--font-body);
       color: var(--color-text);
       background: var(--color-bg);
       line-height: 1.6;
     }
-
-    a {
-      color: var(--color-primary);
-      text-decoration: none;
-    }
-    a:hover, a:focus-visible {
-      text-decoration: underline;
-    }
-
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
+    a { color: var(--color-primary); text-decoration: none; }
+    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
     }
 
     header {
-      position: sticky;
-      top: 0;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(5px);
-      z-index: 10;
-    }
-
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0.5rem 1rem;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    .nav-links a {
-      font-weight: 500;
-    }
-
-    .hero {
-      position: relative;
-      height: 80vh;
-      min-height: 500px;
       background: url('static/img/imagen_1.jpg') center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      color: #fff;
       text-align: center;
-      color: #fff;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.4);
-    }
-
-    .hero-content {
-      position: relative;
-      max-width: 800px;
-      padding: 1rem;
-    }
-
-    .hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(2.5rem, 8vw, 4rem);
-      margin: 0 0 0.5rem;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      background: var(--color-primary);
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: 500;
-      transition: background 0.3s;
-    }
-    .btn:hover, .btn:focus-visible {
-      background: #5a0c9c;
-    }
-
-    section {
       padding: 4rem 1rem;
     }
-
-    .section-title {
+    header h1 {
       font-family: var(--font-display);
-      font-size: clamp(2rem, 5vw, 2.5rem);
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      margin: 0;
+    }
+    header p {
+      font-size: 1.2rem;
+      margin-top: .5rem;
+    }
+    header .cta {
+      margin-top: 2rem;
+      display: inline-block;
+      background: var(--color-primary);
+      color: #fff;
+      padding: .75rem 1.5rem;
+      border-radius: .5rem;
+      font-weight: 700;
+    }
+
+    main { padding: 2rem 1rem; max-width: 1200px; margin: auto; }
+    section { margin-bottom: 4rem; }
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem,6vw,2.5rem);
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       color: var(--color-primary);
     }
 
@@ -138,256 +70,160 @@
       display: grid;
       gap: 1.5rem;
     }
-
-    /* Catálogo grid */
-    .catalogo-grid {
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    @media (min-width:600px) {
+      .grid-2 { grid-template-columns: repeat(2,1fr); }
+      .grid-3 { grid-template-columns: repeat(3,1fr); }
     }
 
     .card {
-      background: #fff;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
+      background:#fff;
+      border-radius:.5rem;
+      overflow:hidden;
+      box-shadow:0 2px 6px rgba(0,0,0,.1);
+      transition:transform .3s;
     }
-    .card:hover, .card:focus-visible {
-      transform: translateY(-4px);
-    }
-
-    .card img {
-      height: 200px;
-      object-fit: cover;
-    }
-
+    .card:hover, .card:focus-within { transform:scale(1.02); }
+    .card img { width:100%; height:200px; object-fit:cover; }
     .card h3 {
       font-family: var(--font-display);
-      font-size: 1.25rem;
-      margin: 0.75rem;
+      margin: .75rem;
+      font-size:1.2rem;
       color: var(--color-primary);
     }
-
-    .card p {
-      margin: 0 0.75rem 0.75rem;
-      font-size: 0.95rem;
+    .card a {
+      display:block;
+      margin: .75rem;
+      font-weight:700;
     }
 
-    /* Servicios */
-    .servicios-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      max-width: 800px;
-      margin: 0 auto;
+    form {
+      background:#fff;
+      padding:1.5rem;
+      border-radius:.5rem;
+      box-shadow:0 2px 6px rgba(0,0,0,.1);
     }
-
-    .servicio-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
+    label { display:block; margin-top:1rem; }
+    input, textarea {
+      width:100%;
+      padding:.5rem;
+      margin-top:.25rem;
+      border:1px solid #ccc;
+      border-radius:.25rem;
     }
-
-    .servicio-item img {
-      width: 80px;
-      height: 80px;
-      object-fit: cover;
-      border-radius: 8px;
+    button {
+      margin-top:1.5rem;
+      background:var(--color-primary);
+      color:#fff;
+      border:none;
+      padding:.75rem 1.5rem;
+      border-radius:.5rem;
+      font-weight:700;
+      cursor:pointer;
     }
-
-    .servicio-item h4 {
-      margin: 0;
-      font-family: var(--font-display);
-      color: var(--color-primary);
-    }
-
-    /* Contacto */
-    .contact-form {
-      max-width: 600px;
-      margin: 0 auto;
-      background: #fff;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-
-    .contact-form label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%;
-      padding: 0.5rem;
-      margin-bottom: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-family: var(--font-body);
-    }
-
-    .contact-form button {
-      width: 100%;
-      padding: 0.75rem;
-      background: var(--color-primary);
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      font-weight: 500;
-      cursor: pointer;
-    }
-    .contact-form button:hover, .contact-form button:focus-visible {
-      background: #5a0c9c;
-    }
+    button:hover { background:#5a0c9e; }
 
     footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-      background: #eee;
+      text-align:center;
+      padding:2rem 1rem;
+      font-size:.9rem;
+      color:#666;
     }
 
-    /* Focus visible */
-    :focus-visible {
-      outline: 2px solid var(--color-primary);
-      outline-offset: 2px;
-    }
-
-    /* Reduced motion */
+    /* Reduce motion */
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.001ms !important;
-        transition-duration: 0.001ms !important;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .hero h1 {
-        font-size: 2rem;
-      }
+      *, *::before, *::after { transition:none !important; }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <nav aria-label="Navegación principal">
-    <div class="logo"><strong>Colección Jacqueline</strong></div>
-    <div class="nav-links">
-      <a href="#catalogo">Catálogo</a>
-      <a href="#servicios">Servicios</a>
-      <a href="#contacto">Contacto</a>
-    </div>
-  </nav>
+  <h1>Colección Jacqueline</h1>
+  <p>Vestidos, tocados y complementos exclusivos para momentos inolvidables</p>
+  <a href="#catalogo" class="cta">Ver catálogo</a>
 </header>
 
 <main>
-  <!-- HERO -->
-  <section class="hero" aria-label="Hero">
-    <div class="hero-content">
-      <h1>Brilla en tu evento especial</h1>
-      <p>Vestidos, tocados y complementos exclusivos para momentos inolvidables.</p>
-      <a class="btn" href="#catalogo">Ver catálogo</a>
-    </div>
-  </section>
-
-  <!-- CATÁLOGO -->
+  <!-- Catálogo -->
   <section id="catalogo">
-    <h2 class="section-title">Catálogo</h2>
-    <div class="grid catalogo-grid">
-      <!-- Vestidos largos -->
+    <h2>Catálogo</h2>
+    <div class="grid grid-3">
       <article class="card" tabindex="0">
         <img src="static/img/imagen_2.jpg" alt="Vestido largo elegante">
         <h3>Vestidos largos</h3>
-        <p>Diseños atemporales para galas y ceremonias.</p>
+        <a href="#">Ver colección</a>
       </article>
-
-      <!-- Vestidos de boda -->
       <article class="card" tabindex="0">
         <img src="static/img/imagen_3.jpg" alt="Vestido de boda">
         <h3>Vestidos de boda</h3>
-        <p>Elige el vestido que hará de tu día un recuerdo eterno.</p>
+        <a href="#">Ver colección</a>
       </article>
-
-      <!-- Chaquetones -->
       <article class="card" tabindex="0">
         <img src="static/img/imagen_4.jpg" alt="Chaquetón elegante">
         <h3>Chaquetones</h3>
-        <p>Estilo y calidez para los momentos más especiales.</p>
+        <a href="#">Ver colección</a>
       </article>
-
-      <!-- Complementos -->
       <article class="card" tabindex="0">
         <img src="static/img/imagen_5.jpg" alt="Complementos exclusivos">
         <h3>Complementos</h3>
-        <p>Bolsos, joyería y más detalles que marcan la diferencia.</p>
+        <a href="#">Ver colección</a>
       </article>
-
-      <!-- Tocados personalizados -->
       <article class="card" tabindex="0">
-        <img src="static/img/imagen_6.jpg" alt="Tocado personalizado">
+        <img src="static/img/imagen_1.jpg" alt="Tocado personalizado">
         <h3>Tocados personalizados</h3>
-        <p>Diseños a medida para realzar tu presencia.</p>
+        <a href="#">Ver colección</a>
       </article>
-
-      <!-- Estolas -->
       <article class="card" tabindex="0">
-        <img src="static/img/imagen_7.jpg" alt="Estola elegante">
+        <img src="static/img/imagen_2.jpg" alt="Estola elegante">
         <h3>Estolas</h3>
-        <p>El toque final que completa tu look.</p>
+        <a href="#">Ver colección</a>
       </article>
     </div>
   </section>
 
-  <!-- SERVICIOS -->
+  <!-- Servicios -->
   <section id="servicios">
-    <h2 class="section-title">Servicios</h2>
-    <div class="servicios-list">
-      <div class="servicio-item" tabindex="0">
-        <img src="static/img/imagen_8.png" alt="Asesoría personalizada">
-        <div>
-          <h4>Asesoría personalizada</h4>
-          <p>Te acompañamos en la elección del look perfecto para tu evento.</p>
-        </div>
-      </div>
-      <div class="servicio-item" tabindex="0">
-        <img src="static/img/imagen_9.jpg" alt="Arreglos y modificaciones">
-        <div>
-          <h4>Arreglos y modificaciones</h4>
-          <p>Adaptamos cualquier prenda a tus medidas y gustos.</p>
-        </div>
-      </div>
+    <h2>Servicios</h2>
+    <div class="grid grid-2">
+      <article class="card" tabindex="0">
+        <h3>Asesoría personalizada</h3>
+        <p>Te acompañamos en la elección del look perfecto para tu evento.</p>
+      </article>
+      <article class="card" tabindex="0">
+        <h3>Arreglos y modificaciones</h3>
+        <p>Adaptamos cualquier prenda a tus medidas y gustos.</p>
+      </article>
     </div>
   </section>
 
-  <!-- CONTACTO -->
+  <!-- Contacto -->
   <section id="contacto">
-    <h2 class="section-title">Contacto</h2>
-    <form class="contact-form" aria-label="Formulario de contacto">
+    <h2>Contacto</h2>
+    <form id="contactForm" novalidate>
       <label for="nombre">Nombre</label>
-      <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+      <input type="text" id="nombre" name="nombre" required>
 
       <label for="email">Correo electrónico</label>
-      <input type="email" id="email" name="email" required placeholder="tu@email.com">
+      <input type="email" id="email" name="email" required>
 
       <label for="mensaje">Mensaje</label>
-      <textarea id="mensaje" name="mensaje" rows="4" required placeholder="Cuéntanos tu consulta"></textarea>
+      <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
 
-      <button type="submit">Enviar</button>
+      <button type="submit">Enviar consulta</button>
     </form>
   </section>
 </main>
 
 <footer>
-  <p>© 2026 Colección Jacqueline – Todos los derechos reservados.</p>
+  © 2026 Colección Jacqueline – Todos los derechos reservados.
 </footer>
 
 <script>
-  // Simple feedback on submit (no backend)
-  const form = document.querySelector('.contact-form');
-  form.addEventListener('submit', function(e) {
+  // Simple form handling – muestra un alert y resetea el formulario
+  const form = document.getElementById('contactForm');
+  form.addEventListener('submit', function(e){
     e.preventDefault();
-    alert('¡Gracias! Tu mensaje ha sido enviado (simulado).');
+    alert('¡Gracias! Te responderemos lo antes posible.');
     form.reset();
   });
 </script>
