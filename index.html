@@ -1,262 +1,243 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Colección Jacqueline – Boutique de eventos</title>
 
-  <!-- Google Fonts: Playfair Display (display) + Montserrat (texto) -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --color-primary: #5b2c6f;   /* indigo‑purple */
-      --color-bg: #fafafa;
-      --color-text: #222;
-      --color-muted: #777;
-      --radius: .5rem;
+      --color-primary: #4b0082;   /* indigo/purple */
+      --color-accent: #d4af37;    /* oro suave */
+      --font-display: 'Playfair Display', serif;
+      --font-body: 'Montserrat', sans-serif;
     }
 
     *, *::before, *::after { box-sizing: border-box; }
     body {
-      margin:0; font-family: 'Montserrat', sans-serif; background: var(--color-bg); color: var(--color-text);
-      line-height: 1.6;
+      margin:0; font-family: var(--font-body); line-height:1.6; color:#333;
+      background:#fafafa;
     }
-    a { color: var(--color-primary); text-decoration: none; }
-    a:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+    a { color:var(--color-primary); text-decoration:none; }
+    a:focus { outline:2px solid var(--color-primary); outline-offset:2px; }
 
     header {
-      background: var(--color-primary);
+      position:relative;
+      height:100vh;
+      background:url('static/img/imagen_1.jpg') center/cover no-repeat;
+      display:flex; align-items:center; justify-content:center;
+      text-align:center;
       color:#fff;
     }
-    .container { max-width:1200px; margin:auto; padding:0 1rem; }
-    .nav {
-      display:flex; justify-content:space-between; align-items:center; height:4rem;
+    header::before{
+      content:"";
+      position:absolute; inset:0;
+      background:rgba(0,0,0,0.45);
     }
-    .nav ul { list-style:none; display:flex; gap:1.5rem; margin:0; padding:0; }
-    .nav a { color:#fff; font-weight:500; }
-    .nav a:hover { text-decoration:underline; }
-
-    .menu-toggle { display:none; background:none; border:none; color:#fff; font-size:1.5rem; cursor:pointer; }
-    .menu-toggle:focus-visible { outline:2px solid #fff; }
-
-    @media (max-width:768px) {
-      .nav ul { position:absolute; top:4rem; left:0; right:0; background:var(--color-primary);
-                flex-direction:column; gap:0; display:none; }
-      .nav ul.show { display:flex; }
-      .nav li { border-bottom:1px solid rgba(255,255,255,.2); }
-      .nav a { padding:.75rem 1rem; display:block; }
-      .menu-toggle { display:block; }
+    header h1{
+      font-family:var(--font-display);
+      font-size:2.5rem;
+      margin:0 1rem;
     }
-
-    /* Hero */
-    .hero {
-      position:relative; overflow:hidden; min-height:70vh; display:flex; align-items:center; justify-content:center;
-      color:#fff; text-align:center;
+    header p{
+      font-size:1.2rem;
+      margin:1rem 0;
     }
-    .hero::before {
-      content:""; position:absolute; inset:0;
-      background:url('static/img/imagen_1.jpg') center/cover no-repeat;
-      filter:brightness(0.6);
+    .btn-primary{
+      display:inline-block;
+      padding:.75rem 1.5rem;
+      background:var(--color-primary);
+      color:#fff;
+      border:none;
+      border-radius:4px;
+      font-weight:600;
+      cursor:pointer;
+      transition:background .3s;
     }
-    .hero h1 {
-      font-family:'Playfair Display',serif; font-size:2.5rem; margin:0;
-    }
-    .hero p {
-      font-size:1.2rem; margin:.5rem 0 1.5rem;
-    }
-    .hero button {
-      background:var(--color-primary); color:#fff; border:none; padding:.75rem 1.5rem;
-      font-size:1rem; border-radius:var(--radius); cursor:pointer;
-    }
-    .hero button:hover { background:#4a2559; }
-    .hero button:focus-visible { outline:2px solid #fff; }
-
-    /* Sections */
-    section { padding:3rem 0; }
-    .section-title {
-      text-align:center; font-family:'Playfair Display',serif; font-size:2rem; margin-bottom:2rem;
-    }
-    .grid {
-      display:grid; gap:1.5rem;
-      grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
-    }
-    .card {
-      background:#fff; border-radius:var(--radius); overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,.1);
-      display:flex; flex-direction:column;
-    }
-    .card img { width:100%; height:auto; object-fit:cover; }
-    .card-content { padding:1rem; flex-grow:1; display:flex; flex-direction:column; }
-    .card-content h3 { margin:0 0 .5rem; font-size:1.25rem; color:var(--color-primary); }
-    .card-content p { flex-grow:1; margin:0 0 1rem; color:var(--color-muted); }
-    .card-content a {
-      align-self:flex-start; background:var(--color-primary); color:#fff; padding:.5rem 1rem;
-      border-radius:var(--radius); font-size:.9rem;
-    }
-    .card-content a:hover { background:#4a2559; }
-
-    /* Contact */
-    .contact {
-      background:var(--color-primary); color:#fff; text-align:center;
-    }
-    .contact h2 { margin-top:0; }
-    .contact button {
-      background:#fff; color:var(--color-primary); border:none; padding:.75rem 1.5rem;
-      font-size:1rem; border-radius:var(--radius); cursor:pointer;
-    }
-    .contact button:hover { background:#f0f0f0; }
-
-    footer {
-      background:#222; color:#bbb; text-align:center; padding:1rem 0; font-size:.9rem;
+    .btn-primary:hover,
+    .btn-primary:focus{
+      background:#3a0066;
     }
 
-    /* Reduced motion */
+    main{padding:2rem 1rem; max-width:1200px; margin:auto;}
+    section{margin-bottom:4rem;}
+    h2{
+      font-family:var(--font-display);
+      font-size:2rem;
+      color:var(--color-primary);
+      margin-bottom:.5rem;
+    }
+    .grid{
+      display:grid;
+      gap:1.5rem;
+    }
+    @media(min-width:600px){
+      .grid{grid-template-columns:repeat(auto-fit, minmax(250px,1fr));}
+    }
+
+    .card{
+      background:#fff;
+      border-radius:8px;
+      overflow:hidden;
+      box-shadow:0 2px 8px rgba(0,0,0,.1);
+      transition:transform .3s;
+    }
+    .card:hover,
+    .card:focus-within{
+      transform:translateY(-4px);
+    }
+    .card img{
+      width:100%; height:200px; object-fit:cover;
+    }
+    .card h3{
+      font-family:var(--font-display);
+      font-size:1.25rem;
+      margin:0.5rem 1rem;
+      color:var(--color-primary);
+    }
+    .card p{
+      margin:0 1rem 1rem;
+      font-size:.95rem;
+    }
+
+    form{
+      display:flex; flex-direction:column; gap:.75rem;
+    }
+    input, textarea{
+      padding:.75rem;
+      border:1px solid #ccc;
+      border-radius:4px;
+      font:inherit;
+    }
+    input:focus, textarea:focus{
+      outline:2px solid var(--color-primary);
+    }
+    button[type="submit"]{
+      align-self:start;
+      background:var(--color-primary);
+      color:#fff;
+      border:none;
+      padding:.75rem 1.5rem;
+      border-radius:4px;
+      cursor:pointer;
+      font-weight:600;
+    }
+    button[type="submit"]:hover,
+    button[type="submit"]:focus{
+      background:#3a0066;
+    }
+
+    footer{
+      text-align:center; padding:1rem;
+      font-size:.85rem; color:#777;
+    }
+
+    /* Reduce motion */
     @media (prefers-reduced-motion: reduce) {
-      * { animation-duration:0s !important; transition:none !important; }
+      *, *::before, *::after { transition:none !important; }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <div class="container nav">
-    <a href="#" class="logo"><strong>Colección Jacqueline</strong></a>
-    <button class="menu-toggle" aria-label="Abrir menú" aria-controls="nav-list" aria-expanded="false">&#9776;</button>
-    <ul id="nav-list">
-      <li><a href="#catalogo">Catálogo</a></li>
-      <li><a href="#servicios">Servicios</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-    </ul>
+  <div>
+    <h1>Brilla en tu evento especial</h1>
+    <p>Vestidos, tocados y complementos exclusivos para momentos inolvidables.</p>
+    <a href="#catalogo" class="btn-primary">Ver catálogo</a>
   </div>
 </header>
 
 <main>
-  <!-- Hero -->
-  <section class="hero" aria-label="Hero">
-    <div class="container">
-      <h1>Brilla en tu evento especial</h1>
-      <p>Vestidos, tocados y complementos exclusivos para momentos inolvidables.</p>
-      <button onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'});">Ver catálogo</button>
-    </div>
-  </section>
-
   <!-- Catálogo -->
   <section id="catalogo">
-    <div class="container">
-      <h2 class="section-title">Catálogo</h2>
-      <div class="grid">
-        <!-- Vestidos largos -->
-        <article class="card">
-          <img src="static/img/imagen_2.jpg" alt="Vestido largo elegante">
-          <div class="card-content">
-            <h3>Vestidos largos</h3>
-            <p>Diseños atemporales para galas y ceremonias.</p>
-            <a href="#">Ver colección</a>
-          </div>
-        </article>
+    <h2>Catálogo</h2>
+    <div class="grid">
+      <article class="card" tabindex="0">
+        <img src="static/img/imagen_2.jpg" alt="Vestido largo elegante">
+        <h3>Vestidos largos</h3>
+        <p>Diseños atemporales para galas y ceremonias.</p>
+        <a href="#" class="btn-primary">Ver colección</a>
+      </article>
 
-        <!-- Boda -->
-        <article class="card">
-          <img src="static/img/imagen_3.jpg" alt="Vestido de boda">
-          <div class="card-content">
-            <h3>Vestidos de boda</h3>
-            <p>Elige el vestido que hará de tu día un recuerdo eterno.</p>
-            <a href="#">Ver colección</a>
-          </div>
-        </article>
+      <article class="card" tabindex="0">
+        <img src="static/img/imagen_3.jpg" alt="Vestido de boda">
+        <h3>Vestidos de boda</h3>
+        <p>Elige el vestido que hará de tu día un recuerdo eterno.</p>
+        <a href="#" class="btn-primary">Ver colección</a>
+      </article>
 
-        <!-- Chaquetones -->
-        <article class="card">
-          <img src="static/img/imagen_4.jpg" alt="Chaquetón elegante">
-          <div class="card-content">
-            <h3>Chaquetones</h3>
-            <p>Para los momentos en los que el estilo y la calidez van de la mano.</p>
-            <a href="#">Ver colección</a>
-          </div>
-        </article>
+      <article class="card" tabindex="0">
+        <img src="static/img/imagen_4.jpg" alt="Chaquetón elegante">
+        <h3>Chaquetones</h3>
+        <p>Estilo y calidez para los momentos más especiales.</p>
+        <a href="#" class="btn-primary">Ver colección</a>
+      </article>
 
-        <!-- Complementos -->
-        <article class="card">
-          <img src="static/img/imagen_5.jpg" alt="Complementos exclusivos">
-          <div class="card-content">
-            <h3>Complementos</h3>
-            <p>Detalles que marcan la diferencia: bolsos, joyería y más.</p>
-            <a href="#">Ver colección</a>
-          </div>
-        </article>
-
-        <!-- Tocados -->
-        <article class="card">
-          <img src="static/img/imagen_6.jpg" alt="Tocado personalizado">
-          <div class="card-content">
-            <h3>Tocados personalizados</h3>
-            <p>Diseños a medida para realzar tu presencia.</p>
-            <a href="#">Ver colección</a>
-          </div>
-        </article>
-
-        <!-- Estolas -->
-        <article class="card">
-          <img src="static/img/imagen_7.jpg" alt="Estola elegante">
-          <div class="card-content">
-            <h3>Estolas</h3>
-            <p>El toque final que completa tu look.</p>
-            <a href="#">Ver colección</a>
-          </div>
-        </article>
-      </div>
+      <article class="card" tabindex="0">
+        <img src="static/img/imagen_5.jpg" alt="Complementos exclusivos">
+        <h3>Complementos</h3>
+        <p>Bolsos, joyería y más detalles que marcan la diferencia.</p>
+        <a href="#" class="btn-primary">Ver colección</a>
+      </article>
     </div>
   </section>
 
   <!-- Servicios -->
-  <section id="servicios" style="background:#fff;">
-    <div class="container">
-      <h2 class="section-title">Servicios</h2>
-      <div class="grid">
-        <article class="card">
-          <img src="static/img/imagen_8.png" alt="Asesoría personalizada">
-          <div class="card-content">
-            <h3>Asesoría personalizada</h3>
-            <p>Te acompañamos en la elección del look perfecto para tu evento.</p>
-          </div>
-        </article>
+  <section id="servicios">
+    <h2>Servicios</h2>
+    <div class="grid">
+      <article class="card" tabindex="0">
+        <h3>Asesoría personalizada</h3>
+        <p>Te acompañamos en la elección del look perfecto para tu evento.</p>
+      </article>
 
-        <article class="card">
-          <img src="static/img/imagen_9.jpg" alt="Arreglos y modificaciones">
-          <div class="card-content">
-            <h3>Arreglos y modificaciones</h3>
-            <p>Adaptamos cualquier prenda a tus medidas y gustos.</p>
-          </div>
-        </article>
-      </div>
+      <article class="card" tabindex="0">
+        <h3>Arreglos y modificaciones</h3>
+        <p>Adaptamos cualquier prenda a tus medidas y gustos.</p>
+      </article>
     </div>
   </section>
 
   <!-- Contacto -->
-  <section id="contacto" class="contact">
-    <div class="container">
-      <h2>¿Quieres más información?</h2>
-      <p>Déjanos tu consulta y te responderemos lo antes posible.</p>
-      <button onclick="alert('Formulario de contacto pendiente de implementación');">Consultar</button>
-    </div>
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <p>¿Quieres más información? Déjanos tu consulta y te responderemos lo antes posible.</p>
+    <form id="contactForm">
+      <input type="text" name="nombre" placeholder="Tu nombre" required>
+      <input type="email" name="email" placeholder="Tu email" required>
+      <textarea name="mensaje" rows="4" placeholder="Tu mensaje" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+    <p>Si prefieres, puedes <a href="#">consultar</a> directamente.</p>
   </section>
 </main>
 
 <footer>
-  <div class="container">
-    © 2026 Colección Jacqueline – Todos los derechos reservados.
-  </div>
+  © 2026 Colección Jacqueline – Todos los derechos reservados.
 </footer>
 
 <script>
-  // Menú móvil accesible
-  const toggleBtn = document.querySelector('.menu-toggle');
-  const navList = document.getElementById('nav-list');
+  // Smooth scroll for internal links (respect reduced motion)
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReduced) {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e){
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        target.scrollIntoView({behavior:'smooth'});
+      });
+    });
+  }
 
-  toggleBtn.addEventListener('click', () => {
-    const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-    toggleBtn.setAttribute('aria-expanded', !expanded);
-    navList.classList.toggle('show');
+  // Simple form handler (demo only)
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    alert('Gracias por tu mensaje. Nos pondremos en contacto pronto.');
+    this.reset();
   });
 </script>
 </body>
