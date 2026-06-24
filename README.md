@@ -1,3 +1,5 @@
-title: Boutique Jacqueline – Sitio estático
-description: Página única y responsive para la boutique de ropa femenina de La Línea de la Concepción.
+title: Colección Jacqueline – Boutique de eventos
+description: Página estática de una boutique femenina especializada en vestidos de boda, chaquetones, tocados y servicios de arreglos.
 sdk: static
+colorFrom: purple
+colorTo: purple
