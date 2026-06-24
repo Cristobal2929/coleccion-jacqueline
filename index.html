@@ -5,143 +5,241 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Colección Jacqueline – Boutique de eventos</title>
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts: Playfair Display (display) + Montserrat (texto) -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --color-primary: #6a0dad;   /* purple */
-      --color-bg: #fafafa;
-      --color-text: #222;
-      --color-accent: #d4b0ff;
+      --color-primary: #6a1b9a;   /* purple */
+      --color-bg: #faf5ff;
+      --color-bg-alt: #f3e5f5;
+      --color-text: #2d2d2d;
+      --font-display: 'Playfair Display', serif;
+      --font-body: 'Montserrat', sans-serif;
     }
-    *, *::before, *::after { box-sizing: border-box; }
+
+    * { box-sizing: border-box; margin:0; padding:0; }
     body {
-      margin:0; font-family: 'Montserrat', sans-serif; background:#fafafa; color:#222;
-      line-height:1.6;
+      font-family: var(--font-body);
+      color: var(--color-text);
+      background: var(--color-bg);
+      line-height: 1.6;
     }
-    h1, h2, h3 { font-family: 'Playfair Display', serif; margin:0; }
-    a { color:var(--color-primary); text-decoration:none; }
-    a:focus-visible { outline:2px solid var(--color-primary); outline-offset:2px; }
-    img { max-width:100%; height:auto; display:block; }
+    a { color: var(--color-primary); text-decoration: none; }
+    a:focus { outline: 3px solid var(--color-primary); outline-offset: 2px; }
 
-    /* Layout */
-    header { position:relative; min-height:70vh; background:url('static/img/imagen_1.jpg') center/cover no-repeat; }
-    header::after { content:''; position:absolute; inset:0; background:rgba(255,255,255,0.6); }
+    header {
+      position: relative;
+      background: linear-gradient(135deg, var(--color-bg-alt), var(--color-bg));
+      color: #fff;
+    }
+    .hero {
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: url('static/img/imagen_1.jpg') center/cover no-repeat;
+    }
+    .hero::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,0.4);
+    }
     .hero-content {
-      position:relative; z-index:1; max-width:800px; margin:0 auto; padding:2rem;
-      text-align:center; color:#222;
+      position:relative;
+      max-width: 800px;
+      padding: 1rem;
     }
-    .hero-content h1 { font-size:2.8rem; color:var(--color-primary); }
-    .hero-content p { font-size:1.2rem; margin-top:1rem; }
-
-    .btn {
-      display:inline-block; margin-top:1.5rem; padding:.75rem 1.5rem;
-      background:var(--color-primary); color:#fff; border:none; border-radius:4px;
-      font-weight:500; cursor:pointer; transition:background .3s;
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem,5vw,3.5rem);
+      margin-bottom: .5rem;
     }
-    .btn:hover, .btn:focus-visible { background:#5a0c9a; }
+    .hero p {
+      font-size: clamp(1rem,2.5vw,1.25rem);
+    }
 
-    section { padding:3rem 1rem; max-width:1200px; margin:auto; }
-    .section-title { text-align:center; margin-bottom:2rem; font-size:2rem; color:var(--color-primary); }
+    nav {
+      background: var(--color-primary);
+      padding: .5rem;
+    }
+    nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      list-style:none;
+    }
+    nav a {
+      color:#fff;
+      font-weight:500;
+    }
 
-    .services, .catalog { display:grid; gap:1.5rem; }
-    .services { grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); }
-    .service-card { background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,.1); }
-    .service-card img { height:200px; object-fit:cover; }
-    .service-card h3 { padding:1rem; font-size:1.4rem; }
+    section {
+      padding: 3rem 1rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem,4vw,2.5rem);
+      text-align:center;
+      margin-bottom:2rem;
+      color: var(--color-primary);
+    }
 
-    .catalog { grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); }
-    .catalog img { border-radius:8px; }
+    .grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+    @media (min-width:600px){
+      .grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (min-width:900px){
+      .grid { grid-template-columns: repeat(3,1fr); }
+    }
 
-    .contact { background:var(--color-accent); border-radius:8px; padding:2rem; text-align:center; }
-    .contact a { color:#fff; font-weight:500; }
-    .contact a:hover { text-decoration:underline; }
+    .card {
+      background:#fff;
+      border-radius:8px;
+      overflow:hidden;
+      box-shadow:0 2px 6px rgba(0,0,0,.1);
+      transition:transform .3s;
+    }
+    .card:hover,
+    .card:focus-within {
+      transform:translateY(-4px);
+    }
+    .card img {
+      width:100%;
+      height:200px;
+      object-fit:cover;
+    }
+    .card h3 {
+      font-family: var(--font-display);
+      font-size:1.25rem;
+      margin: .5rem 1rem;
+      color: var(--color-primary);
+    }
+    .card p {
+      margin:0 1rem 1rem;
+    }
 
-    footer { text-align:center; padding:1rem; font-size:.9rem; color:#777; }
+    .contact {
+      background: var(--color-bg-alt);
+      text-align:center;
+    }
+    .contact a.btn {
+      display:inline-block;
+      margin-top:1rem;
+      padding:.75rem 1.5rem;
+      background: var(--color-primary);
+      color:#fff;
+      border-radius:4px;
+      font-weight:500;
+    }
+    .contact a.btn:focus { outline:3px solid #fff; }
 
-    /* Accessibility */
+    footer {
+      background:#222;
+      color:#ccc;
+      text-align:center;
+      padding:1rem;
+      font-size:.875rem;
+    }
+
+    /* Reduce motion */
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation-duration:0.001ms !important; transition:none !important; }
-    }
-
-    @media (max-width:600px) {
-      .hero-content h1 { font-size:2rem; }
+      *, *::before, *::after { transition:none !important; }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <div class="hero-content" role="banner">
-    <h1>Vestidos y complementos para eventos inolvidables</h1>
-    <p>Descubre la elegancia de nuestras piezas únicas: vestidos de boda, chaquetones, tocados y mucho más.</p>
-    <a href="#contacto" class="btn">Solicita tu cita</a>
-  </div>
+  <nav aria-label="Navegación principal">
+    <ul>
+      <li><a href="#catalogo">Catálogo</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+  <section class="hero" aria-label="Imagen principal">
+    <div class="hero-content">
+      <h1>Boutique Jacqueline</h1>
+      <p>Vestidos y complementos exclusivos para tus eventos más especiales en La Línea de la Concepción.</p>
+    </div>
+  </section>
 </header>
 
 <main>
-  <section id="servicios" class="services-section">
-    <h2 class="section-title">Nuestros servicios</h2>
-    <div class="services">
-      <div class="service-card">
+  <!-- Catálogo -->
+  <section id="catalogo">
+    <h2 class="section-title">Catálogo</h2>
+    <div class="grid">
+      <article class="card" tabindex="0">
         <img src="static/img/imagen_2.jpg" alt="Vestidos largos">
         <h3>Vestidos largos</h3>
-      </div>
-      <div class="service-card">
-        <img src="static/img/imagen_3.jpg" alt="Vestidos de boda">
+        <p>Diseños elegantes para galas, bodas y eventos de gala.</p>
+      </article>
+      <article class="card" tabindex="0">
+        <img src="static/img/imagen_3.png" alt="Vestidos de boda">
         <h3>Vestidos de boda</h3>
-      </div>
-      <div class="service-card">
-        <img src="static/img/imagen_4.png" alt="Chaquetones">
+        <p>Elige el vestido perfecto para el día más importante de tu vida.</p>
+      </article>
+      <article class="card" tabindex="0">
+        <img src="static/img/imagen_4.jpg" alt="Chaquetones">
         <h3>Chaquetones</h3>
-      </div>
-      <div class="service-card">
-        <img src="static/img/imagen_5.jpg" alt="Tocados personalizados">
+        <p>Chaquetones de corte impecable para complementar cualquier look.</p>
+      </article>
+      <article class="card" tabindex="0">
+        <img src="static/img/imagen_5.png" alt="Tocados">
         <h3>Tocados personalizados</h3>
-      </div>
-      <div class="service-card">
-        <img src="static/img/imagen_6.png" alt="Estolas y complementos">
-        <h3>Estolas y complementos</h3>
-      </div>
-      <div class="service-card">
-        <img src="static/img/imagen_7.jpg" alt="Servicio de arreglos">
-        <h3>Arreglos y modificaciones</h3>
-      </div>
+        <p>Detalles artesanales que realzan tu estilo.</p>
+      </article>
+      <article class="card" tabindex="0">
+        <img src="static/img/imagen_6.jpg" alt="Estolas y complementos">
+        <h3>Estolas & Complementos</h3>
+        <p>Estolas, bolsos y accesorios exclusivos para completar tu outfit.</p>
+      </article>
     </div>
   </section>
 
-  <section id="catalogo" class="catalog-section">
-    <h2 class="section-title">Catálogo</h2>
-    <div class="catalog">
-      <img src="static/img/imagen_1.jpg" alt="Modelo con vestido de gala">
-      <img src="static/img/imagen_2.jpg" alt="Detalle de vestido largo">
-      <img src="static/img/imagen_3.jpg" alt="Vestido de boda">
-      <img src="static/img/imagen_4.png" alt="Chaquetón elegante">
-      <img src="static/img/imagen_5.jpg" alt="Tocado con flores">
-      <img src="static/img/imagen_6.png" alt="Estola de seda">
-      <img src="static/img/imagen_7.jpg" alt="Detalle de bordado">
-    </div>
+  <!-- Servicios -->
+  <section id="servicios" class="contact">
+    <h2 class="section-title">Servicios</h2>
+    <p>Además de nuestra colección, ofrecemos:</p>
+    <ul style="list-style:none; padding:0; margin:1rem 0;">
+      <li>✔️ Tocados personalizados</li>
+      <li>✔️ Complementos exclusivos</li>
+      <li>✔️ Servicio de arreglos y modificaciones de trajes</li>
+    </ul>
+    <p>¿Necesitas asesoría? Programa una llamada o escríbenos por WhatsApp.</p>
+    <a class="btn" href="https://wa.me/34635440061" target="_blank" rel="noopener">WhatsApp: 635 44 00 61</a>
   </section>
 
-  <section id="contacto" class="contact">
+  <!-- Contacto -->
+  <section id="contacto">
     <h2 class="section-title">Contacto</h2>
-    <p>¿Quieres más información o agendar una visita? Llámanos o envíanos un mensaje.</p>
-    <p>
-      <strong>Teléfono:</strong> <a href="tel:+34635440061">635 44 00 61</a>
-    </p>
-    <p>
-      <strong>WhatsApp:</strong> <span>[TU WHATSAPP]</span>
-    </p>
-    <p>
-      <strong>Email:</strong> <span>Consultar</span>
-    </p>
+    <p>Teléfono: <a href="tel:+34635440061">635 44 00 61</a></p>
+    <p>Email: <em>Consultar</em></p>
+    <p>Dirección: <em>Consultar</em></p>
   </section>
 </main>
 
 <footer>
-  © 2024 Colección Jacqueline – La Línea de la Concepción
+  <p>&copy; 2024 Colección Jacqueline – Todos los derechos reservados.</p>
 </footer>
 
+<script>
+  // Smooth scroll for navigation links
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
 </body>
 </html>
