@@ -4,192 +4,206 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Colección Jacqueline – Boutique de eventos</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Google Fonts: Playfair Display (display) + Lato (texto) -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --color-primary: #6a0dad;   /* púrpura elegante */
+      --color-primary: #6a0dad; /* purple */
       --color-bg: #fafafa;
       --color-text: #222;
       --color-muted: #555;
+      --font-display: 'Playfair Display', serif;
+      --font-body: 'Lato', sans-serif;
     }
     *, *::before, *::after { box-sizing: border-box; }
     body {
-      margin:0; font-family: 'Montserrat', sans-serif; background: var(--color-bg); color: var(--color-text);
+      margin:0; font-family: var(--font-body); color: var(--color-text);
+      background: var(--color-bg);
       line-height: 1.6;
     }
     a { color: var(--color-primary); text-decoration: none; }
     a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
-      outline: 2px solid var(--color-primary);
+      outline: 3px solid var(--color-primary);
       outline-offset: 2px;
     }
     header {
-      position: sticky; top:0; background: #fff; z-index:10; box-shadow:0 2px 4px rgba(0,0,0,.1);
+      position: sticky; top:0; background: #fff; z-index:10;
+      box-shadow: 0 2px 4px rgba(0,0,0,.1);
     }
     .nav {
-      display:flex; justify-content:space-between; align-items:center; max-width:1200px; margin:auto; padding:1rem;
+      display:flex; justify-content:space-between; align-items:center;
+      max-width:1200px; margin:auto; padding:1rem;
     }
-    .nav .logo { font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--color-primary); }
-    .nav ul { list-style:none; display:flex; gap:1.5rem; margin:0; padding:0; }
-    .nav ul li a { font-weight:500; }
-    .nav .menu-toggle { display:none; background:none; border:none; font-size:1.5rem; cursor:pointer; }
-    @media (max-width:768px){
-      .nav ul { position:absolute; top:100%; left:0; right:0; background:#fff; flex-direction:column; display:none; }
-      .nav ul.show { display:flex; }
-      .nav .menu-toggle { display:block; }
-    }
+    .nav a { margin-left:1.5rem; font-weight:600; }
     .hero {
-      position:relative; background:#000; color:#fff; text-align:center; overflow:hidden;
+      position:relative; height:80vh; min-height:500px;
+      background: url('static/img/imagen_1.jpg') center/cover no-repeat;
+      display:flex; align-items:center; justify-content:center;
+      text-align:center; color:#fff;
     }
-    .hero img { width:100%; height:auto; object-fit:cover; opacity:.4; }
-    .hero .overlay {
-      position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.3), rgba(0,0,0,.7));
+    .hero::before {
+      content:""; position:absolute; inset:0;
+      background:rgba(0,0,0,.4);
     }
-    .hero .content {
-      position:relative; padding:4rem 1rem; max-width:800px; margin:auto;
+    .hero-content {
+      position:relative; max-width:800px;
     }
-    .hero h1 { font-family:'Playfair Display',serif; font-size:2.5rem; margin:0 0 .5rem; }
-    .hero p { font-size:1.2rem; margin:0 0 1.5rem; }
-    .hero .cta { background:var(--color-primary); color:#fff; border:none; padding:.75rem 1.5rem; font-size:1rem; cursor:pointer; border-radius:4px; }
-    .section { padding:3rem 1rem; max-width:1200px; margin:auto; }
-    .section h2 { font-family:'Playfair Display',serif; font-size:2rem; margin-bottom:1rem; color:var(--color-primary); }
-    .grid { display:grid; gap:1.5rem; }
-    @media (min-width:600px){ .grid { grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); } }
-    .card { background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,.1); transition:transform .2s; }
-    .card:hover { transform:translateY(-4px); }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem,5vw,3.5rem);
+      margin:0 0 .5rem;
+    }
+    .hero p {
+      font-size:1.2rem; margin-bottom:1.5rem;
+    }
+    .btn {
+      display:inline-block; padding:.75rem 1.5rem;
+      background:var(--color-primary); color:#fff;
+      border:none; border-radius:4px; cursor:pointer;
+      font-weight:600; transition:background .3s;
+    }
+    .btn:hover, .btn:focus-visible { background:#5a0c9a; }
+    section { padding:4rem 1rem; }
+    .section-title {
+      text-align:center; margin-bottom:2rem;
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem,4vw,2.5rem);
+      color: var(--color-primary);
+    }
+    .grid {
+      display:grid; gap:1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+    .card {
+      background:#fff; border-radius:8px; overflow:hidden;
+      box-shadow:0 2px 6px rgba(0,0,0,.1);
+      transition:transform .3s;
+    }
+    .card:hover, .card:focus-visible { transform:translateY(-4px); }
     .card img { width:100%; height:200px; object-fit:cover; }
-    .card h3 { margin:0.5rem 1rem; font-family:'Playfair Display',serif; font-size:1.25rem; color:var(--color-primary); }
-    .card p { margin:0 1rem 1rem; color:var(--color-muted); }
-    .contact-form { display:flex; flex-direction:column; gap:.75rem; max-width:500px; margin:auto; }
-    .contact-form input, .contact-form textarea { padding:.75rem; border:1px solid #ccc; border-radius:4px; font:inherit; }
-    .contact-form button { background:var(--color-primary); color:#fff; border:none; padding:.75rem; font-size:1rem; cursor:pointer; border-radius:4px; }
-    footer { background:#222; color:#ddd; text-align:center; padding:1.5rem; font-size:.9rem; }
+    .card h3 { margin:1rem; font-family: var(--font-display); color:var(--color-primary); }
+    .card a { margin:0 1rem 1rem; display:inline-block; color:var(--color-primary); font-weight:600; }
+    .contact-form {
+      max-width:600px; margin:auto;
+      display:flex; flex-direction:column; gap:1rem;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      padding:.75rem; border:1px solid #ccc; border-radius:4px;
+      font:inherit;
+    }
+    .contact-form button {
+      align-self:flex-start;
+    }
+    footer {
+      background:#222; color:#ddd; text-align:center; padding:2rem 1rem;
+    }
+    footer a { color:#ddd; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition:none !important; }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <nav class="nav" aria-label="Menú principal">
-      <div class="logo">Colección Jacqueline</div>
-      <button class="menu-toggle" aria-controls="nav-list" aria-expanded="false" aria-label="Abrir menú">☰</button>
-      <ul id="nav-list">
-        <li><a href="#vestidos">Vestidos</a></li>
-        <li><a href="#complementos">Complementos</a></li>
-        <li><a href="#servicios">Servicios</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <section class="hero" aria-label="Hero">
-    <img src="static/img/imagen_1.jpg" alt="Vestido largo elegante" loading="lazy">
-    <div class="overlay" aria-hidden="true"></div>
-    <div class="content">
-      <h1>Brilla en tu evento especial</h1>
-      <p>Vestidos, tocados y complementos exclusivos para momentos inolvidables.</p>
-      <button class="cta" onclick="document.getElementById('vestidos').scrollIntoView({behavior:'smooth'});">Ver catálogo</button>
+<header>
+  <nav class="nav">
+    <div class="logo"><strong>Colección Jacqueline</strong></div>
+    <div class="menu">
+      <a href="#catalogo">Catálogo</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#contacto">Contacto</a>
     </div>
-  </section>
+  </nav>
+</header>
 
-  <section id="vestidos" class="section">
-    <h2>Vestidos</h2>
-    <div class="grid">
-      <article class="card">
-        <img src="static/img/imagen_2.jpg" alt="Vestido largo para galas" loading="lazy">
-        <h3>Vestidos largos</h3>
-        <p>Diseños atemporales para galas y ceremonias.</p>
-        <a href="#">Ver colección</a>
-      </article>
-      <article class="card">
-        <img src="static/img/imagen_3.jpg" alt="Vestido de boda elegante" loading="lazy">
-        <h3>Vestidos de boda</h3>
-        <p>Elige el vestido que hará de tu día un recuerdo eterno.</p>
-        <a href="#">Ver colección</a>
-      </article>
-    </div>
-  </section>
+<section class="hero" aria-label="Hero">
+  <div class="hero-content">
+    <h1>Brilla en tu evento especial</h1>
+    <p>Vestidos, tocados y complementos exclusivos para momentos inolvidables.</p>
+    <a href="#catalogo" class="btn">Ver catálogo</a>
+  </div>
+</section>
 
-  <section id="complementos" class="section">
-    <h2>Complementos</h2>
-    <div class="grid">
-      <article class="card">
-        <img src="static/img/imagen_4.jpg" alt="Tocado personalizado" loading="lazy">
-        <h3>Tocados personalizados</h3>
-        <p>Diseños a medida para realzar tu presencia.</p>
-        <a href="#">Ver colección</a>
-      </article>
-      <article class="card">
-        <img src="static/img/imagen_5.jpg" alt="Estola elegante" loading="lazy">
-        <h3>Estolas</h3>
-        <p>El toque final que completa tu look.</p>
-        <a href="#">Ver colección</a>
-      </article>
-      <article class="card">
-        <img src="static/img/imagen_6.png" alt="Complementos exclusivos" loading="lazy">
-        <h3>Complementos</h3>
-        <p>Bolsos, joyería y más detalles que marcan la diferencia.</p>
-        <a href="#">Ver colección</a>
-      </article>
-    </div>
-  </section>
+<section id="catalogo">
+  <h2 class="section-title">Catálogo</h2>
+  <div class="grid">
+    <article class="card">
+      <img src="static/img/imagen_2.jpg" alt="Vestido largo elegante">
+      <h3>Vestidos largos</h3>
+      <a href="#" class="btn">Ver colección</a>
+    </article>
+    <article class="card">
+      <img src="static/img/imagen_3.jpg" alt="Vestido de boda">
+      <h3>Vestidos de boda</h3>
+      <a href="#" class="btn">Ver colección</a>
+    </article>
+    <article class="card">
+      <img src="static/img/imagen_4.jpg" alt="Chaquetón elegante">
+      <h3>Chaquetones</h3>
+      <a href="#" class="btn">Ver colección</a>
+    </article>
+    <article class="card">
+      <img src="static/img/imagen_5.jpg" alt="Complementos exclusivos">
+      <h3>Complementos</h3>
+      <a href="#" class="btn">Ver colección</a>
+    </article>
+    <article class="card">
+      <img src="static/img/imagen_6.jpg" alt="Tocado personalizado">
+      <h3>Tocados personalizados</h3>
+      <a href="#" class="btn">Ver colección</a>
+    </article>
+    <article class="card">
+      <img src="static/img/imagen_7.png" alt="Estola elegante">
+      <h3>Estolas</h3>
+      <a href="#" class="btn">Ver colección</a>
+    </article>
+  </div>
+</section>
 
-  <section id="servicios" class="section">
-    <h2>Servicios</h2>
-    <div class="grid">
-      <article class="card">
-        <img src="static/img/imagen_7.jpg" alt="Asesoría personalizada" loading="lazy">
-        <h3>Asesoría personalizada</h3>
-        <p>Te acompañamos en la elección del look perfecto para tu evento.</p>
-        <a href="#contacto">Solicitar asesoría</a>
-      </article>
-      <article class="card">
-        <img src="static/img/imagen_1.jpg" alt="Arreglos y modificaciones" loading="lazy">
-        <h3>Arreglos y modificaciones</h3>
-        <p>Adaptamos cualquier prenda a tus medidas y gustos.</p>
-        <a href="#contacto">Más información</a>
-      </article>
-    </div>
-  </section>
+<section id="servicios" style="background:#f5f5f5;">
+  <h2 class="section-title">Servicios</h2>
+  <div class="grid">
+    <article class="card">
+      <img src="static/img/imagen_8.jpg" alt="Asesoría personalizada">
+      <h3>Asesoría personalizada</h3>
+      <p style="margin:1rem;">Te acompañamos en la elección del look perfecto para tu evento.</p>
+    </article>
+    <article class="card">
+      <img src="static/img/imagen_9.png" alt="Arreglos y modificaciones">
+      <h3>Arreglos y modificaciones</h3>
+      <p style="margin:1rem;">Adaptamos cualquier prenda a tus medidas y gustos.</p>
+    </article>
+  </div>
+</section>
 
-  <section id="contacto" class="section">
-    <h2>Contacto</h2>
-    <p>¿Quieres más información? Déjanos tu consulta y te responderemos lo antes posible.</p>
-    <form class="contact-form" action="#" method="POST" aria-label="Formulario de contacto">
-      <label>
-        Nombre
-        <input type="text" name="nombre" required>
-      </label>
-      <label>
-        Correo electrónico
-        <input type="email" name="email" required>
-      </label>
-      <label>
-        Mensaje
-        <textarea name="mensaje" rows="4" required></textarea>
-      </label>
-      <button type="submit">Enviar</button>
-    </form>
-  </section>
+<section id="contacto">
+  <h2 class="section-title">Contacto</h2>
+  <form class="contact-form" action="#" method="POST" aria-label="Formulario de contacto">
+    <input type="text" name="nombre" placeholder="Nombre" required>
+    <input type="email" name="email" placeholder="Correo electrónico (opcional)">
+    <textarea name="mensaje" rows="4" placeholder="Cuéntanos tu consulta..." required></textarea>
+    <button type="submit" class="btn">Enviar</button>
+  </form>
+</section>
 
-  <footer>
-    © 2026 Colección Jacqueline – Todos los derechos reservados.
-  </footer>
+<footer>
+  <p>© 2026 Colección Jacqueline – Todos los derechos reservados.</p>
+</footer>
 
-  <script>
-    // Menú responsive
-    const toggle = document.querySelector('.menu-toggle');
-    const navList = document.getElementById('nav-list');
-    toggle.addEventListener('click', () => {
-      const expanded = toggle.getAttribute('aria-expanded') === 'true';
-      toggle.setAttribute('aria-expanded', !expanded);
-      navList.classList.toggle('show');
+<script>
+  // Smooth scroll for internal links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!prefersReduced) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      }
     });
-
-    // Respeta prefers-reduced-motion
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (prefersReduced.matches) {
-      document.querySelectorAll('a, button, .card').forEach(el => {
-        el.style.transition = 'none';
-      });
-    }
-  </script>
+  });
+</script>
 </body>
 </html>
