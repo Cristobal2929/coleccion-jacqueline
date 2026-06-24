@@ -3,183 +3,218 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Colección Jacqueline – Piezas únicas</title>
-
-  <!-- Google Fonts: Playfair Display (display) + Montserrat (texto) -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
-
+  <title>Colección Jacqueline – Boutique de Elegancia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Tipografía: Playfair Display (display) + Montserrat (texto) -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --color-primary: #3f51b5;   /* indigo */
-      --color-accent: #ffb300;    /* dorado cálido */
+      --color-primary: #6a0dad; /* púrpura elegante */
+      --color-bg: #fafafa;
+      --color-text: #222;
       --font-display: 'Playfair Display', serif;
       --font-body: 'Montserrat', sans-serif;
     }
-
     *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
     body {
-      margin: 0;
+      margin:0;
       font-family: var(--font-body);
+      color: var(--color-text);
+      background: var(--color-bg);
       line-height: 1.6;
-      color: #212121;
-      background: #fafafa;
     }
     a { color: var(--color-primary); text-decoration: none; }
-    a:focus-visible, button:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 2px; }
-
+    a:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
     header {
-      position: relative;
-      overflow: hidden;
+      position: sticky;
+      top:0;
+      background: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,.1);
+      z-index: 10;
     }
+    nav {
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      max-width:1200px;
+      margin:auto;
+      padding:0.5rem 1rem;
+    }
+    nav ul { display:flex; gap:1.5rem; list-style:none; margin:0; padding:0; }
+    nav li { margin:0; }
+    nav a { font-weight:500; }
     .hero {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      min-height: 70vh;
-      color: #fff;
-      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
-                  url('https://via.placeholder.com/1200x800?text=Colección+Jacqueline') center/cover no-repeat;
+      background: url('https://images.unsplash.com/photo-1520975922655-5c5e5c8c5c5c?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color:#fff;
+      text-align:center;
+      padding:8rem 1rem;
     }
     .hero h1 {
       font-family: var(--font-display);
-      font-size: clamp(2rem, 6vw, 3.5rem);
-      margin: 0.2em 0;
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      margin:0 0 .5rem;
     }
     .hero p {
-      font-size: clamp(1rem, 2.5vw, 1.25rem);
-      margin: 0.5em 0 1.2em;
+      font-size: 1.2rem;
+      margin:0 0 1.5rem;
     }
-    .hero button {
+    .hero .cta {
+      display:inline-block;
+      background: var(--color-primary);
+      color:#fff;
+      padding:.75rem 1.5rem;
+      border-radius:4px;
+      font-weight:500;
+    }
+    section { padding:4rem 1rem; }
+    .container { max-width:1200px; margin:auto; }
+    h2 {
       font-family: var(--font-display);
-      font-size: 1rem;
-      padding: 0.8rem 1.6rem;
-      border: none;
-      border-radius: 4px;
-      background: var(--color-accent);
-      color: #212121;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .hero button:hover,
-    .hero button:focus-visible { background: #ffa000; }
-
-    section {
-      padding: 3rem 1rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    .section-title {
-      font-family: var(--font-display);
-      font-size: clamp(1.75rem, 4vw, 2.5rem);
-      margin-bottom: 1rem;
-      text-align: center;
+      font-size: clamp(2rem,6vw,2.5rem);
+      text-align:center;
+      margin-bottom:2rem;
       color: var(--color-primary);
     }
-    .services {
-      display: grid;
-      gap: 2rem;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    .grid {
+      display:grid;
+      gap:1.5rem;
     }
-    .service-card {
-      background: #fff;
-      border-radius: 8px;
-      padding: 1.5rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
+    @media (min-width:600px) {
+      .grid { grid-template-columns: repeat(2,1fr); }
     }
-    .service-card:hover,
-    .service-card:focus-visible { transform: translateY(-4px); }
-    .service-card h3 {
+    @media (min-width:900px) {
+      .grid { grid-template-columns: repeat(3,1fr); }
+    }
+    .card {
+      background:#fff;
+      border-radius:8px;
+      overflow:hidden;
+      box-shadow:0 2px 6px rgba(0,0,0,.1);
+      transition:transform .2s;
+    }
+    .card:focus-visible, .card:hover { transform:translateY(-4px); outline:2px solid var(--color-primary); }
+    .card img { width:100%; height:200px; object-fit:cover; }
+    .card h3 {
       font-family: var(--font-display);
-      font-size: 1.25rem;
-      margin-top: 0;
+      margin:0.5rem 1rem;
+      font-size:1.25rem;
       color: var(--color-primary);
     }
-
+    .card p { margin:0 1rem 1rem; font-size:.95rem; }
     .contact {
-      background: #e8eaf6;
-      border-radius: 8px;
-      padding: 2rem;
+      background: var(--color-primary);
+      color:#fff;
+      text-align:center;
     }
-    .contact ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .contact li {
-      margin: 0.8rem 0;
-      font-size: 1rem;
-    }
-    .contact a {
-      font-weight: 500;
-    }
-
+    .contact a { color:#fff; font-weight:600; }
+    .contact .phone { font-size:1.5rem; margin:1rem 0; }
     footer {
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.875rem;
-      color: #777;
+      background:#222;
+      color:#bbb;
+      text-align:center;
+      padding:1rem;
+      font-size:.85rem;
     }
-
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation-duration: 0.001ms !important; transition: none !important; }
+      *, *::before, *::after { transition:none !important; }
     }
   </style>
 </head>
 <body>
+  <header>
+    <nav aria-label="Navegación principal">
+      <a href="#" class="logo" aria-label="Colección Jacqueline"><strong>CJ</strong></a>
+      <ul>
+        <li><a href="#catalogo">Catálogo</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<header>
-  <section class="hero" id="hero">
-    <h1>Colección Jacqueline</h1>
-    <p>Piezas únicas para amantes del arte y la elegancia</p>
-    <button onclick="document.getElementById('servicios').scrollIntoView()">Descubre la colección</button>
+  <section class="hero" aria-label="Sección principal">
+    <h1>Estilo y elegancia para ocasiones especiales</h1>
+    <p>Descubre vestidos, tocados y complementos exclusivos para eventos inolvidables.</p>
+    <a href="#catalogo" class="cta">Explorar catálogo</a>
   </section>
-</header>
 
-<main>
-  <section id="servicios">
-    <h2 class="section-title">Servicios</h2>
-    <div class="services">
-      <article class="service-card" tabindex="0">
-        <h3>Diseño a medida</h3>
-        <p>Creación de piezas exclusivas que reflejan tu estilo personal, con atención al detalle y materiales de alta calidad.</p>
-      </article>
-      <article class="service-card" tabindex="0">
-        <h3>Restauración y conservación</h3>
-        <p>Reparación experta de objetos antiguos, garantizando la preservación de su valor histórico y estético.</p>
-      </article>
-      <article class="service-card" tabindex="0">
-        <h3>Asesoría personalizada</h3>
-        <p>Te acompañamos en la selección de piezas, ofreciendo recomendaciones basadas en tus gustos y necesidades.</p>
-      </article>
+  <section id="catalogo">
+    <div class="container">
+      <h2>Catálogo</h2>
+      <div class="grid">
+        <article class="card" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1520975922655-5c5e5c8c5c5c?auto=format&fit=crop&w=600&q=80" alt="Vestido largo elegante">
+          <h3>Vestidos largos</h3>
+          <p>Diseños atemporales para bodas y galas.</p>
+        </article>
+        <article class="card" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1520975922655-5c5e5c8c5c5c?auto=format&fit=crop&w=600&q=80" alt="Vestido de boda">
+          <h3>Boda</h3>
+          <p>Elige el vestido que hará brillar tu día más importante.</p>
+        </article>
+        <article class="card" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1520975922655-5c5e5c8c5c5c?auto=format&fit=crop&w=600&q=80" alt="Chaquetón elegante">
+          <h3>Chaquetones</h3>
+          <p>Prendas de temporada para complementar tu look.</p>
+        </article>
+        <article class="card" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1520975922655-5c5e5c8c5c5c?auto=format&fit=crop&w=600&q=80" alt="Tocado personalizado">
+          <h3>Tocados</h3>
+          <p>Diseños únicos y personalizados para cada ocasión.</p>
+        </article>
+        <article class="card" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1520975922655-5c5e5c8c5c5c?auto=format&fit=crop&w=600&q=80" alt="Estola de lujo">
+          <h3>Estolas</h3>
+          <p>Complementos que añaden un toque de distinción.</p>
+        </article>
+        <article class="card" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1520975922655-5c5e5c8c5c5c?auto=format&fit=crop&w=600&q=80" alt="Complementos exclusivos">
+          <h3>Complementos</h3>
+          <p>Bolsos y accesorios exclusivos para completar tu outfit.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios" class="contact">
+    <div class="container">
+      <h2>Servicios</h2>
+      <p>En Colección Jacqueline ofrecemos asesoramiento personalizado, tocados a medida y servicio de arreglos y modificaciones de trajes.</p>
+      <ul style="list-style:none; padding:0; margin:2rem 0; display:flex; flex-direction:column; gap:1rem;">
+        <li><strong>Asesoramiento</strong> – Programa una llamada o déjanos un WhatsApp.</li>
+        <li><strong>Tocados personalizados</strong> – Creaciones únicas para tu evento.</li>
+        <li><strong>Complementos</strong> – Bolsos y accesorios exclusivos.</li>
+        <li><strong>Arreglos y modificaciones</strong> – Adaptamos cualquier prenda a tu medida.</li>
+      </ul>
     </div>
   </section>
 
   <section id="contacto" class="contact">
-    <h2 class="section-title">Contacto</h2>
-    <ul>
-      <li><strong>Teléfono:</strong> <a href="tel:+34635440061">+34 635 44 00 61</a></li>
-      <li><strong>Dirección:</strong> Consultar</li>
-    </ul>
+    <div class="container">
+      <h2>Contacto</h2>
+      <p class="phone">📞 <a href="tel:635440061">635 44 00 61</a></p>
+      <p>¿Prefieres escribir? <a href="[TU WHATSAPP]">Envíanos un WhatsApp</a></p>
+      <p>Programa una llamada o déjanos tus datos y te contactaremos.</p>
+    </div>
   </section>
-</main>
 
-<footer>
-  © 2024 Colección Jacqueline. Todos los derechos reservados.
-</footer>
+  <footer>
+    © 2024 Colección Jacqueline – Todos los derechos reservados.
+  </footer>
 
-<script>
-  // Pequeña mejora de accesibilidad: foco visible en los botones del hero
-  document.querySelectorAll('button').forEach(btn => {
-    btn.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        btn.click();
-      }
-    });
-  });
-</script>
+  <script>
+    // Smooth scroll for anchor links (respetando prefers-reduced-motion)
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReduced) {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          target.scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+    }
+  </script>
 </body>
 </html>

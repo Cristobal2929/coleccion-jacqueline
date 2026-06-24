@@ -1,5 +1,5 @@
-title: Colección Jacqueline – Página única
-description: Web estática de una sola página para la herramienta de contacto de coleccionjacqueline.com
+title: Colección Jacqueline – Boutique de Elegancia
+description: Página web estática de una boutique femenina para eventos, con catálogo, servicios y contacto.
 sdk: static
-colorFrom: indigo
-colorTo: indigo
+colorFrom: purple
+colorTo: purple
