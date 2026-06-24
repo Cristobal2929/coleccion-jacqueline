@@ -1,146 +1,170 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Colección Jacqueline – Boutique de eventos</title>
 
-  <!-- Google Fonts: Playfair Display (display) + Montserrat (texto) -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --color-primary: #6a0dad;   /* purple */
-      --color-accent: #d63384;    /* pink */
       --font-display: 'Playfair Display', serif;
-      --font-text: 'Montserrat', sans-serif;
+      --font-body: 'Lato', sans-serif;
+      --color-primary: #6a0dad; /* purple */
+      --color-bg: #fafafa;
+      --color-text: #222;
+      --focus-ring: 2px solid var(--color-primary);
     }
-
-    /* Reset & base */
-    *, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
-    html { scroll-behavior: smooth; }
+    *, *::before, *::after { box-sizing: border-box; }
     body {
-      font-family: var(--font-text);
+      margin:0;
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-text);
       line-height: 1.6;
-      color: #333;
-      background: #fafafa;
     }
     a { color: var(--color-primary); text-decoration: none; }
-    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
-      outline: 3px solid var(--color-accent);
-      outline-offset: 2px;
+    a:focus { outline: var(--focus-ring); }
+
+    header {
+      position: relative;
+      overflow: hidden;
     }
-
-    /* Layout */
-    header { position: sticky; top:0; background:#fff; z-index:10; box-shadow:0 2px 4px rgba(0,0,0,.1); }
-    .nav { display:flex; justify-content:center; gap:1.5rem; padding:1rem; }
-    .nav a { font-weight:500; }
-
     .hero {
-      position:relative;
-      background:url('static/img/imagen_1.jpg') center/cover no-repeat;
-      min-height:70vh;
       display:flex;
-      align-items:center;
+      flex-direction:column;
       justify-content:center;
+      align-items:center;
       text-align:center;
+      min-height:70vh;
+      background: url('static/img/imagen_1.jpg') center/cover no-repeat;
       color:#fff;
     }
-    .hero::after {
+    .hero::after{
       content:"";
       position:absolute;
       inset:0;
-      background:rgba(0,0,0,.4);
+      background:rgba(0,0,0,0.4);
     }
-    .hero-content {
-      position:relative;
-      max-width:800px;
-      padding:2rem;
+    .hero > *{position:relative;z-index:1;}
+    .hero h1{
+      font-family: var(--font-display);
+      font-size: clamp(2rem,5vw,3.5rem);
+      margin:0;
     }
-    .hero h1 {
-      font-family:var(--font-display);
-      font-size:2.8rem;
-      margin-bottom:.5rem;
-    }
-    .hero p {
+    .hero p{
       font-size:1.2rem;
-      margin-bottom:1.5rem;
+      margin:1rem 0;
     }
-    .hero button {
-      background:var(--color-accent);
-      border:none;
+    .hero .cta{
+      background: var(--color-primary);
       color:#fff;
       padding:.8rem 1.5rem;
-      font-size:1rem;
-      cursor:pointer;
+      border:none;
       border-radius:4px;
+      cursor:pointer;
+      font-weight:700;
     }
+    .hero .cta:focus{outline:var(--focus-ring);}
 
-    section { padding:3rem 1rem; max-width:1200px; margin:auto; }
-    h2 {
-      font-family:var(--font-display);
-      font-size:2rem;
-      margin-bottom:1rem;
-      text-align:center;
-    }
-
-    .grid {
-      display:grid;
+    nav {
+      display:flex;
+      justify-content:center;
       gap:1.5rem;
+      padding:1rem;
+      background:#fff;
+      position:sticky;
+      top:0;
+      z-index:10;
     }
-    .grid-2 { grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); }
-    .grid-3 { grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); }
+    nav a{
+      font-weight:700;
+      padding:.3rem .6rem;
+    }
+    nav a:focus{outline:var(--focus-ring);}
 
-    .card {
+    section{
+      padding:3rem 1rem;
+      max-width:1200px;
+      margin:auto;
+    }
+    .services{
+      display:grid;
+      gap:2rem;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    }
+    .service-card{
       background:#fff;
       border-radius:8px;
       overflow:hidden;
-      box-shadow:0 2px 6px rgba(0,0,0,.1);
+      box-shadow:0 2px 6px rgba(0,0,0,0.1);
       transition:transform .2s;
     }
-    .card:hover { transform:scale(1.02); }
-    .card img { width:100%; height:200px; object-fit:cover; }
-    .card h3 { padding:1rem; font-size:1.2rem; }
+    .service-card:focus-within,
+    .service-card:hover{
+      transform:scale(1.02);
+    }
+    .service-card img{
+      width:100%;
+      height:200px;
+      object-fit:cover;
+    }
+    .service-card h3{
+      font-family:var(--font-display);
+      margin:1rem;
+      font-size:1.4rem;
+    }
+    .service-card p{
+      margin:0 1rem 1rem;
+    }
 
-    .contact-form {
-      display:flex;
-      flex-direction:column;
-      gap:.8rem;
-      max-width:500px;
-      margin:auto;
+    .gallery{
+      display:grid;
+      gap:1rem;
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
     }
-    .contact-form input,
-    .contact-form textarea {
-      padding:.8rem;
-      border:1px solid #ccc;
-      border-radius:4px;
-      font:inherit;
+    .gallery img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      border-radius:6px;
     }
-    .contact-form button {
-      background:var(--color-primary);
+
+    .contact{
+      background: var(--color-primary);
       color:#fff;
-      border:none;
-      padding:.8rem;
-      font-size:1rem;
-      cursor:pointer;
-      border-radius:4px;
+      text-align:center;
+      border-radius:8px;
+      padding:2rem;
     }
+    .contact h2{
+      font-family: var(--font-display);
+      margin-bottom:.5rem;
+    }
+    .contact p{
+      margin:0.5rem 0;
+    }
+    .contact .btn{
+      background:#fff;
+      color:var(--color-primary);
+      padding:.8rem 1.5rem;
+      border:none;
+      border-radius:4px;
+      cursor:pointer;
+      font-weight:700;
+      margin-top:1rem;
+    }
+    .contact .btn:focus{outline:var(--focus-ring);}
 
-    footer {
-      background:#222;
-      color:#ddd;
+    footer{
       text-align:center;
       padding:1rem;
       font-size:.9rem;
+      color:#666;
     }
 
-    /* Responsive */
-    @media (max-width:600px) {
-      .hero h1 { font-size:2rem; }
-      .hero p { font-size:1rem; }
-    }
-
-    /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { transition:none !important; }
     }
@@ -149,92 +173,74 @@
 <body>
 
 <header>
-  <nav class="nav" aria-label="Navegación principal">
-    <a href="#hero">Inicio</a>
-    <a href="#catalogo">Catálogo</a>
+  <nav aria-label="Navegación principal">
     <a href="#servicios">Servicios</a>
+    <a href="#catalogo">Catálogo</a>
     <a href="#contacto">Contacto</a>
   </nav>
-</header>
 
-<section class="hero" id="hero">
-  <div class="hero-content">
+  <section class="hero" aria-label="Sección principal">
     <h1>Colección Jacqueline</h1>
     <p>Boutique femenina para eventos: vestidos, tocados y complementos exclusivos.</p>
-    <button onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'});">
-      Descubre nuestro catálogo
-    </button>
-  </div>
-</section>
+    <button class="cta" onclick="openWhatsApp()">Solicita tu asesoría</button>
+  </section>
+</header>
 
-<section id="catalogo">
-  <h2>Catálogo</h2>
-  <div class="grid grid-3">
-    <div class="card">
-      <img src="static/img/imagen_2.jpg" alt="Vestidos largos">
-      <h3>Vestidos largos</h3>
+<main>
+  <section id="servicios">
+    <h2 style="font-family:var(--font-display);text-align:center;">Nuestros Servicios</h2>
+    <div class="services">
+      <article class="service-card" tabindex="0">
+        <img src="static/img/imagen_2.jpg" alt="Tocados personalizados">
+        <h3>Tocados Personalizados</h3>
+        <p>Diseños únicos para que tu look sea inolvidable.</p>
+      </article>
+      <article class="service-card" tabindex="0">
+        <img src="static/img/imagen_3.jpg" alt="Complementos exclusivos">
+        <h3>Complementos</h3>
+        <p>Bolsos y accesorios de temporada, creados con detalle.</p>
+      </article>
+      <article class="service-card" tabindex="0">
+        <img src="static/img/imagen_4.jpg" alt="Arreglos y modificaciones">
+        <h3>Arreglos y Modificaciones</h3>
+        <p>Adaptamos cualquier prenda a tus necesidades para el día especial.</p>
+      </article>
     </div>
-    <div class="card">
-      <img src="static/img/imagen_3.jpg" alt="Chaquetones">
-      <h3>Chaquetones</h3>
-    </div>
-    <div class="card">
-      <img src="static/img/imagen_4.jpg" alt="Tocados personalizados">
-      <h3>Tocados personalizados</h3>
-    </div>
-    <div class="card">
-      <img src="static/img/imagen_5.jpg" alt="Complementos">
-      <h3>Complementos</h3>
-    </div>
-    <div class="card">
-      <img src="static/img/imagen_1.jpg" alt="Estolas">
-      <h3>Estolas</h3>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section id="servicios">
-  <h2>Servicios</h2>
-  <div class="grid grid-2">
-    <div class="card">
-      <h3>Tocados personalizados</h3>
-      <p>Diseñamos tocados a medida para que cada detalle sea único.</p>
+  <section id="catalogo">
+    <h2 style="font-family:var(--font-display);text-align:center;">Catálogo Destacado</h2>
+    <div class="gallery">
+      <img src="static/img/imagen_1.jpg" alt="Vestido largo de boda">
+      <img src="static/img/imagen_2.jpg" alt="Tocado elegante">
+      <img src="static/img/imagen_3.jpg" alt="Bolso de temporada">
+      <img src="static/img/imagen_4.jpg" alt="Detalle de complemento">
+      <img src="static/img/imagen_5.jpg" alt="Chaquetón de fiesta">
     </div>
-    <div class="card">
-      <h3>Complementos exclusivos</h3>
-      <p>Bolsos y accesorios que completan tu look con elegancia.</p>
-    </div>
-    <div class="card">
-      <h3>Arreglos y modificaciones</h3>
-      <p>Servicio de ajustes y personalizaciones de trajes y vestidos.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section id="contacto">
-  <h2>Contacto</h2>
-  <p style="text-align:center;">¿Quieres asesoramiento? Déjanos un mensaje y te responderemos a la mayor brevedad.</p>
-  <form class="contact-form" aria-label="Formulario de contacto">
-    <input type="text" name="nombre" placeholder="Tu nombre" required>
-    <input type="email" name="email" placeholder="Tu email" required>
-    <textarea name="mensaje" rows="4" placeholder="Tu mensaje" required></textarea>
-    <button type="submit">Enviar</button>
-  </form>
-</section>
+  <section id="contacto" class="contact">
+    <h2>¿Quieres brillar?</h2>
+    <p>Programa una llamada o escríbenos por WhatsApp.</p>
+    <button class="btn" onclick="openWhatsApp()">[TU WHATSAPP]</button>
+  </section>
+</main>
 
 <footer>
-  <p>&copy; 2026 Colección Jacqueline – Todos los derechos reservados.</p>
+  © 2024 Colección Jacqueline – Todos los derechos reservados.
 </footer>
 
 <script>
-  // Simple smooth‑scroll fallback for browsers that ignore CSS scroll-behavior
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({behavior: 'smooth'});
-      }
+  function openWhatsApp(){
+    // Si dispones de número, reemplaza el marcador por el enlace real.
+    const url = 'https://wa.me/34XXXXXXXXX'; // <--- sustituye X por tu número
+    window.open(url, '_blank');
+  }
+
+  // Navegación accesible con teclado (cierre de menú en caso de futuro hamburguesa)
+  document.querySelectorAll('nav a').forEach(link=>{
+    link.addEventListener('keydown', e=>{
+      if(e.key==='Enter' || e.key===' ') link.click();
     });
   });
 </script>
